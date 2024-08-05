@@ -1,7 +1,7 @@
 // src/components/MainContainer.js
 import React, { useState } from 'react';
 import SearchInput from './SearchInput';
-import CategoryCarouselContainer from './CategoryCarouselContainer';
+import CategoryCarousel from './CategoryCarousel';
 import ProductList from './ProductList';
 import products from '../data/products';
 import categories from '../data/categories';
@@ -20,9 +20,9 @@ const MainContainer = () => {
   };
 
   return (
-    <div className="main-container mx-auto px-6 py-4 max-w-4xl max-h-screen">
+    <div className="main-container mx-auto max-w-4xl"> {/* Elimina max-h-screen */}
       <SearchInput onSearch={handleSearch} />
-      {showCarousel && <CategoryCarouselContainer categories={categories} />}
+      {showCarousel && <CategoryCarousel categories={categories} />}
       <ProductList products={filteredProducts} />
     </div>
   );

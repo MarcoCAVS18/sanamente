@@ -41,6 +41,18 @@ const products = [
       { type: 'Grande', price: '24.00' },
     ],
   },
+  {
+    id: 4,
+    name: 'Mix Frutal',
+    category: 'Frutos secos',
+    description: 'Precios por cantidad',
+    imageUrl: arroz, // Reemplaza con la imagen correcta
+    prices: [
+      { type: 'Pequeño', price: '12.00' },
+      { type: 'Mediano', price: '18.00' },
+      { type: 'Grande', price: '24.00' },
+    ],
+  },
 ];
 
 export default products;

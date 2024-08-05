@@ -2,16 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-/* src/index.css */
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
-
-
-  
 
 body {
   background-color: #FCFCFC;
   font-family: 'Lato', sans-serif;
   color: #363636;
+  margin: 0; /* Elimina márgenes por defecto */
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Asegura que la aplicación ocupe al menos la altura de la pantalla */
+}
+
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100%; /* Ajusta el ancho del pie de página */
 }
 
 .carousel .slide {
@@ -25,10 +34,9 @@ body {
 }
 
 .carousel .control-dots {
-    display: none !important;
-  }
+  display: none !important;
+}
 
 .carousel .carousel-status {
-    display: none !important;
-  }
-
+  display: none !important;
+}

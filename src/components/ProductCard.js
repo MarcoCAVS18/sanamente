@@ -16,22 +16,22 @@ const ProductCard = ({ product }) => {
 
   return (
     <div className="bg-white rounded-lg shadow-md p-4 mb-4 relative flex flex-col">
-      <div className="flex">
+      <div className="flex flex-wrap">
         <img
           src={product.imageUrl}
           alt={product.name}
-          className="w-28 h-28 object-cover rounded-full"
+          className="w-24 h-24 sm:w-28 sm:h-28 object-cover rounded-full"
         />
-        <div className="flex flex-col justify-end flex-grow">
+        <div className="flex flex-col justify-end flex-grow ml-2">
           <div className="flex flex-col">
-            <span className="bg-green-500 text-white px-1 py-0.5 rounded-full text-xs font-bold self-start mb-1">
+            <span className="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-bold inline-block">
               {product.category}
             </span>
-            <h3 className="text-lg font-bold mb-1">{product.name}</h3>
-            <p className="text-sm text-gray-500">{product.description}</p>
+            <h3 className="text-base sm:text-lg font-bold mb-1">{product.name}</h3>
+            <p className="text-xs sm:text-sm text-gray-500">{product.description}</p>
           </div>
         </div>
-        <div className="flex flex-col items-end ml-4 justify-between">
+        <div className="flex flex-col items-end justify-between">
           <button
             className={`mb-2 ${isFavorite ? 'text-yellow-500' : 'text-gray-500'}`}
             onClick={handleToggleFavorite}
@@ -40,7 +40,7 @@ const ProductCard = ({ product }) => {
           </button>
           <div className="text-right">
             <span className="text-xs block">Desde</span>
-            <span className="text-lg font-black">${product.prices[0].price}</span>
+            <span className="text-base sm:text-lg font-black">${product.prices[0].price}</span>
           </div>
           <button
             onClick={handleToggleExpand}
@@ -55,7 +55,7 @@ const ProductCard = ({ product }) => {
         <div className="mt-2">
           <ul className="list-disc list-inside">
             {product.prices.map((price, index) => (
-              <li key={index} className="text-sm">
+              <li key={index} className="text-xs sm:text-sm">
                 {price.type}: ${price.price}
               </li>
             ))}
