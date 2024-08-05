@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import SearchInput from '../components/SearchInput';
 import CategoryProductList from '../components/CategoryProductList';
 import products from '../data/products';
+import Breadcrumb from '../components/Breadcrumb';
+
 
 const ProductosLacteosPage = () => {
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const category = 'Productos lacteos'; 
+  const category = 'Productos Lacteos'; 
 
   useEffect(() => {
     console.log('Products in useEffect:', products);
@@ -33,9 +35,16 @@ const ProductosLacteosPage = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <div className="flex-grow">
-        <h1 className="text-3xl font-bold m-4">
-          Nuestros {category}
+
+        <h1 className="text-3xl font-bold ml-4">
+          {category}
         </h1>
+        <Breadcrumb 
+          items={[
+            { label: 'Inicio', path: '/' },
+            { label: 'Productos Lácteos', path: '/productos-lacteos' }
+          ]}
+        />
         <SearchInput onSearch={handleSearch} />
         <CategoryProductList products={filteredProducts} />
       </div>
