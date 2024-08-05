@@ -1,4 +1,3 @@
-// src/App.js
 import React, { useEffect, useState, useRef } from 'react';
 import Header from './components/Header';
 import MainContainer from './components/MainContainer';
@@ -11,7 +10,9 @@ function App() {
   const [showContactButton, setShowContactButton] = useState(true);
 
   useEffect(() => {
-    if (footerRef.current) {
+    const currentFooterRef = footerRef.current; // Copia el valor del ref
+
+    if (currentFooterRef) {
       const observer = new IntersectionObserver(
         (entries) => {
           const entry = entries[0];
@@ -20,11 +21,11 @@ function App() {
         { threshold: 0.1 }
       );
 
-      observer.observe(footerRef.current);
+      observer.observe(currentFooterRef);
 
       // Función de limpieza para detener la observación cuando el componente se desmonta
       return () => {
-        observer.unobserve(footerRef.current);
+        observer.unobserve(currentFooterRef);
       };
     }
   }, [footerRef]);
@@ -35,7 +36,7 @@ function App() {
       <main className="flex-grow">
         <MainContainer />
       </main>
-      <SocialMedia /> 
+      <SocialMedia /> {/* Agrega el componente aquí */}
       {showContactButton && <ContactButton />}
       <Footer ref={footerRef} />
     </div>
@@ -43,3 +44,4 @@ function App() {
 }
 
 export default App;
+
