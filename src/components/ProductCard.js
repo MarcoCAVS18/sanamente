@@ -18,7 +18,7 @@ const ProductCard = ({ product }) => {
     <div className="bg-white rounded-lg shadow-md p-4 mb-4 relative flex flex-col">
       <div className="flex flex-wrap">
         <img
-          src={product.imageUrl}
+          src={product.imageUrl || 'placeholder.jpg'}
           alt={product.name}
           className="w-24 h-24 sm:w-28 sm:h-28 object-cover rounded-full"
         />
@@ -41,8 +41,14 @@ const ProductCard = ({ product }) => {
             <FontAwesomeIcon icon={faStar} />
           </button>
           <div className="text-right">
-            <span className="text-xs block">Desde</span>
-            <span className="text-base sm:text-lg font-black">${product.prices[0].price}</span>
+            {product.prices && product.prices.length > 0 ? (
+              <>
+                <span className="text-xs block">Desde</span>
+                <span className="text-base sm:text-lg font-black">${product.prices[0].price}</span>
+              </>
+            ) : (
+              <span className="text-xs block text-gray-500">Precio no disponible</span>
+            )}
           </div>
           <button
             onClick={handleToggleExpand}
@@ -53,7 +59,7 @@ const ProductCard = ({ product }) => {
           </button>
         </div>
       </div>
-      {isExpanded && (
+      {isExpanded && product.prices && product.prices.length > 0 && (
         <div className="mt-2">
           <ul className="grid grid-cols-2 gap-2 list-none p-0">
             {product.prices.map((price, index) => (
@@ -76,4 +82,5 @@ const ProductCard = ({ product }) => {
 };
 
 export default ProductCard;
+
 
