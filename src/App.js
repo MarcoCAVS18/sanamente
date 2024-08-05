@@ -37,11 +37,10 @@ function App() {
         <MainContainer />
       </main>
       <SocialMedia /> 
-      {showContactButton && <ContactButton />}
+      <ContactButton show={showContactButton} /> {/* Pasa la propiedad show */}
       <Footer ref={footerRef} />
     </div>
   );
 }
 
 export default App;
-
