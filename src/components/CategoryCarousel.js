@@ -1,4 +1,3 @@
-// src/components/CategoryCarouselContainer.js
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -9,7 +8,10 @@ import CategoryItem from './CategoryItem';
 const CategoryCarousel = ({ categories }) => {
   return (
     <div className="category-carousel">
-      <h2 className="text-2xl font-bold m-4">Categorías</h2>
+      <div className="m-4 flex items-baseline">
+        <h2 className="text-2xl font-bold">Categorías</h2>
+        <p className="text-gray-500 text-xs ml-2">Desliza para ver más!</p>
+      </div>
       <Swiper
         spaceBetween={10}
         slidesPerView={2}
