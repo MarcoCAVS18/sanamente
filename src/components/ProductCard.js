@@ -24,9 +24,11 @@ const ProductCard = ({ product }) => {
         />
         <div className="flex flex-col justify-end flex-grow ml-2">
           <div className="flex flex-col">
-            <span className="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-bold inline-block">
-              {product.category}
-            </span>
+            <div className="category-container">
+              <span className="category-label">
+                {product.category}
+              </span>
+            </div>
             <h3 className="text-base sm:text-lg font-bold mb-1">{product.name}</h3>
             <p className="text-xs sm:text-sm text-gray-500">{product.description}</p>
           </div>
@@ -53,9 +55,16 @@ const ProductCard = ({ product }) => {
       </div>
       {isExpanded && (
         <div className="mt-2">
-          <ul className="list-disc list-inside">
+          <ul className="grid grid-cols-2 gap-2 list-none p-0">
             {product.prices.map((price, index) => (
-              <li key={index} className="text-xs sm:text-sm">
+              <li
+                key={index}
+                className={`text-xs sm:text-sm flex items-center justify-center p-2 border border-gray-300 rounded-md ${
+                  (product.prices.length % 2 === 1 && index === product.prices.length - 1)
+                    ? 'col-span-2' // Make the last item span both columns if the count is odd
+                    : ''
+                }`}
+              >
                 {price.type}: ${price.price}
               </li>
             ))}
@@ -67,3 +76,4 @@ const ProductCard = ({ product }) => {
 };
 
 export default ProductCard;
+

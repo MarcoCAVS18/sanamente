@@ -7,6 +7,9 @@ import products from '../data/products';
 import categories from '../data/categories';
 
 const MainContainer = () => {
+  console.log('Products:', products);
+  console.log('Categories:', categories);
+  
   const [filteredProducts, setFilteredProducts] = useState(products);
   const [showCarousel, setShowCarousel] = useState(true);
 

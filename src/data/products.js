@@ -9,11 +9,12 @@ const products = [
     name: 'Almendras',
     category: 'Frutos secos',
     description: 'Precios por cantidad',
-    imageUrl: imageFrutos, // Reemplaza con la imagen correcta
+    imageUrl: imageFrutos, 
     prices: [
-      { type: 'Pequeño', price: '10.00' },
-      { type: 'Mediano', price: '15.00' },
-      { type: 'Grande', price: '20.00' },
+      { type: '100 gramos', price: '1.200' },
+      { type: '250 gramos', price: '2.000' },
+      { type: '500 gramos', price: '4.000' },
+      { type: '1 kilogramo', price: '8.000' },
     ],
   },
   {
@@ -21,12 +22,12 @@ const products = [
     name: 'Yogurt Griego',
     category: 'Congelados',
     description: 'Precios por unidad',
-    imageUrl: mix, // Reemplaza con la imagen correcta
+    imageUrl: mix, 
     prices: [
       { type: '100 gramos', price: '1.200' },
       { type: '250 gramos', price: '2.000' },
       { type: '500 gramos', price: '4.000' },
-      { type: '500 gramos', price: '8.000' },
+      { type: '1  kilogramos', price: '8.000' },
     ],
   },
   {
@@ -34,7 +35,7 @@ const products = [
     name: 'Mix Frutal',
     category: 'Frutos secos',
     description: 'Precios por cantidad',
-    imageUrl: arroz, // Reemplaza con la imagen correcta
+    imageUrl: arroz, 
     prices: [
       { type: 'Pequeño', price: '12.00' },
       { type: 'Mediano', price: '18.00' },
@@ -46,7 +47,7 @@ const products = [
     name: 'Mix Frutal',
     category: 'Frutos secos',
     description: 'Precios por cantidad',
-    imageUrl: arroz, // Reemplaza con la imagen correcta
+    imageUrl: arroz, 
     prices: [
       { type: 'Pequeño', price: '12.00' },
       { type: 'Mediano', price: '18.00' },

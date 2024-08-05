@@ -8,20 +8,26 @@ body {
   background-color: #FCFCFC;
   font-family: 'Lato', sans-serif;
   color: #363636;
-  margin: 0; /* Elimina márgenes por defecto */
+  margin: 0; 
 }
 
 .App {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Asegura que la aplicación ocupe al menos la altura de la pantalla */
+  min-height: 100vh; 
 }
 
 footer {
   position: relative;
   bottom: 0;
-  width: 100%; /* Ajusta el ancho del pie de página */
+  width: 100%; 
 }
+
+/* Asegúrate de que el contenedor principal ocupe toda la altura de la pantalla */
+.min-h-screen {
+  min-height: 100vh;
+}
+
 
 .carousel .slide {
   display: flex;
@@ -50,3 +56,17 @@ footer {
 .social-media-icons a:hover {
   color: #3ECC33; 
 }
+
+.category-container {
+  display: inline-block;
+}
+
+.category-label {
+  background-color: green; /* o la clase tailwind bg-green-500 */
+  color: white; /* o la clase tailwind text-white */
+  padding: 0.25rem 0.5rem; /* o las clases tailwind px-2 py-1 */
+  border-radius: 9999px; /* o la clase tailwind rounded-full */
+  font-size: 0.75rem; /* o la clase tailwind text-xs */
+  font-weight: bold; /* o la clase tailwind font-bold */
+}
+

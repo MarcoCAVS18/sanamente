@@ -1,16 +1,17 @@
-// src/components/CategoryItem.js
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const CategoryItem = ({ imageUrl, name, link }) => {
   return (
-    <a href={link} className="block">
+    <Link to={link} className="block">
       <div className="category-item text-center mb-6">
         <img src={imageUrl} alt={name} className="w-full h-auto mb-2" />
         <p className="text-lg font-bold">{name}</p>
       </div>
-    </a>
+    </Link>
   );
 };
 
 export default CategoryItem;
+
 

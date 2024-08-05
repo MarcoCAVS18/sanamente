@@ -1,0 +1,46 @@
+import React, { useState, useEffect } from 'react';
+import SearchInput from '../components/SearchInput';
+import CategoryProductList from '../components/CategoryProductList';
+import products from '../data/products';
+
+const FrutosSecosPage = () => {
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const category = 'Frutos secos'; // Ajusta esto para coincidir con la categoría en los productos
+
+  useEffect(() => {
+    console.log('Products in useEffect:', products);
+    const initialFiltered = products.filter((product) =>
+      product.category.toLowerCase() === category.toLowerCase()
+    );
+    console.log('Initial filtered products:', initialFiltered);
+    setFilteredProducts(initialFiltered);
+  }, [category]);
+
+  const handleSearch = (term) => {
+    console.log('Search term:', term);
+    const filtered = products.filter((product) =>
+      product.name.toLowerCase().includes(term.toLowerCase()) &&
+      product.category.toLowerCase() === category.toLowerCase()
+    );
+    console.log('Filtered products after search:', filtered);
+    setFilteredProducts(filtered);
+  };
+
+  useEffect(() => {
+    console.log('Filtered products in useEffect:', filteredProducts);
+  }, [filteredProducts]);
+
+  return (
+    <div className="flex flex-col min-h-screen">
+      <div className="flex-grow">
+        <h1 className="text-3xl font-bold m-4">
+          Nuestros {category}
+        </h1>
+        <SearchInput onSearch={handleSearch} />
+        <CategoryProductList products={filteredProducts} />
+      </div>
+    </div>
+  );
+};
+
+export default FrutosSecosPage;

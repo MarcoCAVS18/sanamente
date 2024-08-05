@@ -33,11 +33,11 @@ const CategoryCarousel = ({ categories }) => {
         scrollbar={{ draggable: true }}
       >
         {categories.map((category) => (
-          <SwiperSlide key={category.id}>
+          <SwiperSlide key={category.name}>
             <CategoryItem 
               imageUrl={category.imageUrl} 
               name={category.name} 
-              link={`/categories/${category.id}`} 
+              link={`/${category.name.toLowerCase().replace(/ /g, '-')}`} 
             />
           </SwiperSlide>
         ))}
