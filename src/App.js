@@ -36,7 +36,7 @@ function App() {
       <main className="flex-grow">
         <MainContainer />
       </main>
-      <SocialMedia /> {/* Agrega el componente aquí */}
+      <SocialMedia /> 
       {showContactButton && <ContactButton />}
       <Footer ref={footerRef} />
     </div>
