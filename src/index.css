@@ -40,3 +40,13 @@ footer {
 .carousel .carousel-status {
   display: none !important;
 }
+
+/* src/index.css */
+.social-media-icons a {
+  color: #F0F2F3;
+  transition: color 0.3s ease;
+}
+
+.social-media-icons a:hover {
+  color: #3ECC33; 
+}
