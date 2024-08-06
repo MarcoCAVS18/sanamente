@@ -47,4 +47,9 @@ const GalletitasPage = () => {
         />
         <SearchInput onSearch={handleSearch} />
         <CategoryProductList products={filteredProducts} />
-      </
+      </div>
+    </div>
+  );
+};
+
+export default GalletitasPage;
