@@ -1,10 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import Promo from './Promo';
 
 const ProductCard = ({ product }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
+  const [prices, setPrices] = useState([]);
+
+  useEffect(() => {
+    // Intenta convertir el campo prices a un array si es una cadena
+    try {
+      if (typeof product.prices === 'string') {
+        const parsedPrices = JSON.parse(product.prices);
+        setPrices(parsedPrices);
+      } else if (Array.isArray(product.prices)) {
+        setPrices(product.prices);
+      } else {
+        console.error('Unexpected format for prices:', product.prices);
+      }
+    } catch (error) {
+      console.error('Error parsing prices:', error);
+    }
+  }, [product.prices]);
 
   const handleToggleExpand = () => {
     setIsExpanded(!isExpanded);
@@ -13,6 +31,10 @@ const ProductCard = ({ product }) => {
   const handleToggleFavorite = () => {
     setIsFavorite(!isFavorite);
   };
+
+  console.log('Product data:', product);
+  console.log('Processed Prices:', prices);
+  console.log('onlyPrice value:', product.onlyPrice);
 
   return (
     <div className="bg-white rounded-lg shadow-md p-4 mb-4 relative flex flex-col">
@@ -23,14 +45,15 @@ const ProductCard = ({ product }) => {
           className="w-24 h-24 sm:w-28 sm:h-28 object-cover rounded-full"
         />
         <div className="flex flex-col justify-end flex-grow ml-2">
-          <div className="flex flex-col">
-            <div className="category-container">
-              <span className="category-label">
-                {product.category}
-              </span>
+          <div className="relative">
+            {product.promo === 'Si' && <Promo />}
+            <div className="flex flex-col">
+              <div className="category-container">
+                <span className="category-label">{product.category}</span>
+              </div>
+              <h3 className="text-base sm:text-lg font-bold mb-1">{product.name}</h3>
+              <p className="text-xs sm:text-sm text-gray-500">{product.description}</p>
             </div>
-            <h3 className="text-base sm:text-lg font-bold mb-1">{product.name}</h3>
-            <p className="text-xs sm:text-sm text-gray-500">{product.description}</p>
           </div>
         </div>
         <div className="flex flex-col items-end justify-between">
@@ -41,33 +64,48 @@ const ProductCard = ({ product }) => {
             <FontAwesomeIcon icon={faStar} />
           </button>
           <div className="text-right">
-            {product.prices && product.prices.length > 0 ? (
-              <>
-                <span className="text-xs block">Desde</span>
-                <span className="text-base sm:text-lg font-black">${product.prices[0].price}</span>
-              </>
+            {product.onlyPrice === 'unico' ? (
+              prices.length > 0 ? (
+                <>
+                  <span className="text-xs block">Desde</span>
+                  <span className="text-base sm:text-lg font-black">${prices[0].price}</span>
+                </>
+              ) : (
+                <span className="text-xs block text-gray-500">Precio no disponible</span>
+              )
             ) : (
-              <span className="text-xs block text-gray-500">Precio no disponible</span>
+              <>
+                {prices.length > 0 ? (
+                  <>
+                    <span className="text-xs block">Desde</span>
+                    <span className="text-base sm:text-lg font-black">${prices[0].price}</span>
+                  </>
+                ) : (
+                  <span className="text-xs block text-gray-500">Precio no disponible</span>
+                )}
+              </>
             )}
           </div>
-          <button
-            onClick={handleToggleExpand}
-            className="text-gray-700 font-bold text-xs"
-          >
-            <FontAwesomeIcon icon={isExpanded ? faChevronUp : faChevronDown} />
-            <span className="ml-1">{isExpanded ? 'Ver menos' : 'Ver más'}</span>
-          </button>
+          {product.onlyPrice === 'muchos' && (
+            <button
+              onClick={handleToggleExpand}
+              className="text-gray-700 font-bold text-xs"
+            >
+              <FontAwesomeIcon icon={isExpanded ? faChevronUp : faChevronDown} />
+              <span className="ml-1">{isExpanded ? 'Ver menos' : 'Ver más'}</span>
+            </button>
+          )}
         </div>
       </div>
-      {isExpanded && product.prices && product.prices.length > 0 && (
+      {isExpanded && product.onlyPrice === 'muchos' && prices.length > 0 && (
         <div className="mt-2">
           <ul className="grid grid-cols-2 gap-2 list-none p-0">
-            {product.prices.map((price, index) => (
+            {prices.map((price, index) => (
               <li
                 key={index}
                 className={`text-xs sm:text-sm flex items-center justify-center p-2 border border-gray-300 rounded-md ${
-                  (product.prices.length % 2 === 1 && index === product.prices.length - 1)
-                    ? 'col-span-2' // Make the last item span both columns if the count is odd
+                  (prices.length % 2 === 1 && index === prices.length - 1)
+                    ? 'col-span-2'
                     : ''
                 }`}
               >
@@ -82,5 +120,3 @@ const ProductCard = ({ product }) => {
 };
 
 export default ProductCard;
-
-
