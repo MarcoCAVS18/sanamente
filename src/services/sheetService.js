@@ -21,15 +21,15 @@ export const fetchCategories = async () => {
 
 export const fetchProducts = async () => {
   try {
-    const response = await axios.get(`${BASE_URL}Products!A1:G100?key=${API_KEY}`);
+    const response = await axios.get(`${BASE_URL}Products!A1:H100?key=${API_KEY}`);
     const products = response.data.values.slice(1).map(row => {
       let parsedPrices;
       try {
         // Log the raw value of prices
-        console.log('Raw prices value:', row[6]);
+        console.log('Raw prices value:', row[7]); // Columna H
 
         // Parse the prices value
-        parsedPrices = JSON.parse(row[6] || '[]');
+        parsedPrices = JSON.parse(row[7] || '[]');
         console.log('Parsed prices:', parsedPrices);
       } catch (e) {
         console.error('Error parsing prices:', e);
@@ -43,8 +43,8 @@ export const fetchProducts = async () => {
         description: row[3],
         promo: row[4],
         onlyPrice: row[5],
-        imageUrl: row[6],
-        prices: Array.isArray(parsedPrices) ? parsedPrices : [],
+        imageUrl: row[6], // Ahora corresponde a la columna G (imagen)
+        prices: Array.isArray(parsedPrices) ? parsedPrices : [], // Ahora corresponde a la columna H (prices)
       };
     });
 
@@ -54,3 +54,4 @@ export const fetchProducts = async () => {
     return [];
   }
 };
+

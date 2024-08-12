@@ -59,7 +59,10 @@ footer {
 }
 
 .category-container {
-  display: inline-block;
+  display: inline-flex; /* Cambia inline-block a inline-flex para mejor control del contenido */
+  align-items: center;
+  max-width: max-content; /* Limita el ancho del contenedor al contenido del texto */
+  border-radius: 999px;
 }
 
 .category-label {
@@ -69,6 +72,7 @@ footer {
   border-radius: 9999px; /* o la clase tailwind rounded-full */
   font-size: 0.75rem; /* o la clase tailwind text-xs */
   font-weight: bold; /* o la clase tailwind font-bold */
+  white-space: nowrap; /* Evita que el texto se divida en varias líneas */
 }
 
 

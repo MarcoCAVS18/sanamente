@@ -3,6 +3,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import Promo from './Promo';
 
+const categoryColors = {
+  'Almacen': '#b16b05',
+  'Lacteos': '#006996',
+  'Frutos secos': '#850016',
+  'Cereales y Harinas': '#266d57',
+  'Condimentos y Especias': '#534a68',
+  'Granos y Semillas': '#d0a669',
+};
+
 const ProductCard = ({ product }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
@@ -32,9 +41,8 @@ const ProductCard = ({ product }) => {
     setIsFavorite(!isFavorite);
   };
 
-  console.log('Product data:', product);
-  console.log('Processed Prices:', prices);
-  console.log('onlyPrice value:', product.onlyPrice);
+  // Obtener el color de fondo de la categoría
+  const categoryColor = categoryColors[product.category] || '#cccccc'; // Color de respaldo
 
   return (
     <div className="bg-white rounded-lg shadow-md p-4 mb-4 relative flex flex-col">
@@ -48,8 +56,16 @@ const ProductCard = ({ product }) => {
           <div className="relative">
             {product.promo === 'Si' && <Promo />}
             <div className="flex flex-col">
-              <div className="category-container">
-                <span className="category-label">{product.category}</span>
+              <div
+                className="category-container"
+                style={{ backgroundColor: categoryColor }}
+              >
+                <span
+                  className="category-label"
+                  style={{ backgroundColor: categoryColor }}
+                >
+                  {product.category}
+                </span>
               </div>
               <h3 className="text-base sm:text-lg font-bold mb-1">{product.name}</h3>
               <p className="text-xs sm:text-sm text-gray-500">{product.description}</p>
@@ -120,3 +136,4 @@ const ProductCard = ({ product }) => {
 };
 
 export default ProductCard;
+
