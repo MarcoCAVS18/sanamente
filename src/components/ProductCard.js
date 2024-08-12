@@ -10,6 +10,7 @@ const categoryColors = {
   'Cereales y Harinas': '#266d57',
   'Condimentos y Especias': '#534a68',
   'Granos y Semillas': '#d0a669',
+  'Snacks': '#ebde0b',
 };
 
 const ProductCard = ({ product }) => {

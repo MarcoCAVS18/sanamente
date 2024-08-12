@@ -3,9 +3,11 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import CategoryItem from './CategoryItem';
+import { Link } from 'react-router-dom';
 
 const CategoryCarousel = ({ categories }) => {
+  console.log('Rendering CategoryCarousel with categories:', categories);
+
   return (
     <div className="category-carousel">
       <div className="m-4 flex items-baseline">
@@ -34,11 +36,12 @@ const CategoryCarousel = ({ categories }) => {
       >
         {categories.map((category) => (
           <SwiperSlide key={category.name}>
-            <CategoryItem 
-              imageUrl={category.imageUrl} 
-              name={category.name} 
-              link={`/${category.name.toLowerCase().replace(/ /g, '-')}`} 
-            />
+            <Link to={`/category/${category.name.toLowerCase().replace(/ /g, '-')}`} className="block">
+              <div className="category-item text-center mb-6">
+                <img src={category.imageUrl} alt={category.name} className="w-full h-auto mb-2" />
+                <p className="text-lg font-bold">{category.name}</p>
+              </div>
+            </Link>
           </SwiperSlide>
         ))}
       </Swiper>

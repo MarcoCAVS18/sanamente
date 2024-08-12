@@ -1,3 +1,4 @@
+// src/App.js
 import React, { useEffect, useState, useRef } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
@@ -5,12 +6,7 @@ import MainContainer from './components/MainContainer';
 import Footer from './components/Footer';
 import ContactButton from './components/ContactButton';
 import SocialMedia from './components/SocialMedia';
-import CerealesPage from './page/CerealesPage';
-import FrutosSecosPage from './page/FrutosSecosPage';
-import GalletitasPage from './page/GalletitasPage';
-import GranosPage from './page/GranosPage';
-import ProductosLacteosPage from './page/ProductosLacteosPage';
-import SnacksPage from './page/SnacksPage';
+import CategoryPage from './page/CategoryPage';
 
 function App() {
   const footerRef = useRef(null);
@@ -43,12 +39,7 @@ function App() {
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<MainContainer />} />
-            <Route path="/cereales" element={<CerealesPage />} />
-            <Route path="/frutos-secos" element={<FrutosSecosPage />} />
-            <Route path="/galletitas" element={<GalletitasPage />} />
-            <Route path="/granos" element={<GranosPage />} />
-            <Route path="/productos-lacteos" element={<ProductosLacteosPage />} />
-            <Route path="/snacks" element={<SnacksPage />} />
+            <Route path="/category/:category" element={<CategoryPage />} />
           </Routes>
         </main>
         <SocialMedia />
