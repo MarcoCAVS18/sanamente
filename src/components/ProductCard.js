@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import Promo from './Promo';
+import FavoriteAlert from './FavoriteAlert';
 
 const categoryColors = {
   'Almacen': '#b16b05',
@@ -17,9 +18,15 @@ const ProductCard = ({ product }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
   const [productPrices, setProductPrices] = useState([]);
+  const [alertVisible, setAlertVisible] = useState(false);
 
   useEffect(() => {
-    // Intenta convertir el campo prices a un array si es una cadena
+    // Cargar la lista de favoritos y comprobar si el producto está en ella
+    const currentFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    const isProductFavorite = currentFavorites.some(favProduct => favProduct.id === product.id);
+    setIsFavorite(isProductFavorite);
+
+    // Analizar los precios del producto
     try {
       if (typeof product.prices === 'string') {
         const parsedPrices = JSON.parse(product.prices);
@@ -32,21 +39,31 @@ const ProductCard = ({ product }) => {
     } catch (error) {
       console.error('Error parsing prices:', error);
     }
-    // Añadir console.log para verificar el producto
     console.log('Product data:', product);
-  }, [product.prices, product]);
+  }, [product]);
 
   const handleToggleExpand = () => {
     setIsExpanded(!isExpanded);
   };
 
   const handleToggleFavorite = () => {
-    setIsFavorite(!isFavorite);
-    showFavoriteAlert();
+    const currentFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    const isProductFavorite = currentFavorites.some(favProduct => favProduct.id === product.id);
+
+    if (isProductFavorite) {
+      const updatedFavorites = currentFavorites.filter(favProduct => favProduct.id !== product.id);
+      localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+    } else {
+      currentFavorites.push(product);
+      localStorage.setItem('favorites', JSON.stringify(currentFavorites));
+    }
+
+    setIsFavorite(!isProductFavorite);
+    setAlertVisible(true);
   };
 
-  const showFavoriteAlert = () => {
-    alert('Producto agregado a favoritos');
+  const handleAlertClose = () => {
+    setAlertVisible(false);
   };
 
   const categoryColor = categoryColors[product.category] || '#cccccc';
@@ -138,6 +155,11 @@ const ProductCard = ({ product }) => {
           </ul>
         </div>
       )}
+      <FavoriteAlert
+        message={isFavorite ? 'Producto agregado a favoritos' : 'Producto eliminado de favoritos'}
+        visible={alertVisible}
+        onClose={handleAlertClose}
+      />
     </div>
   );
 };

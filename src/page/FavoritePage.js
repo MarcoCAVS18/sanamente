@@ -9,7 +9,7 @@ const FavoritePage = () => {
 
   useEffect(() => {
     const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    console.log('Stored favorites:', storedFavorites); // Verifica si los favoritos están almacenados correctamente
+    console.log('Stored favorites:', storedFavorites); 
     setFavorites(storedFavorites);
   }, []);
 
@@ -21,7 +21,7 @@ const FavoritePage = () => {
     product.name.toLowerCase().includes(searchTerm)
   );
 
-  console.log('Filtered favorites:', filteredFavorites); // Verifica si los favoritos se filtran correctamente
+  console.log('Filtered favorites:', filteredFavorites);
 
   return (
     <div className="container mx-auto p-4">
