@@ -32,7 +32,9 @@ const ProductCard = ({ product }) => {
     } catch (error) {
       console.error('Error parsing prices:', error);
     }
-  }, [product.prices]);
+    // Añadir console.log para verificar el producto
+    console.log('Product data:', product);
+  }, [product.prices, product]);
 
   const handleToggleExpand = () => {
     setIsExpanded(!isExpanded);

@@ -9,6 +9,7 @@ const FavoritePage = () => {
 
   useEffect(() => {
     const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    console.log('Stored favorites:', storedFavorites); // Verifica si los favoritos están almacenados correctamente
     setFavorites(storedFavorites);
   }, []);
 
@@ -19,6 +20,8 @@ const FavoritePage = () => {
   const filteredFavorites = favorites.filter((product) =>
     product.name.toLowerCase().includes(searchTerm)
   );
+
+  console.log('Filtered favorites:', filteredFavorites); // Verifica si los favoritos se filtran correctamente
 
   return (
     <div className="container mx-auto p-4">
@@ -36,10 +39,9 @@ const FavoritePage = () => {
             <ProductCard key={product.id} product={product} />
           ))
         ) : (
-            <div className='m-6 text-center text-gray-500'>
-                <p>No tienes productos favoritos.</p>
-            </div>
-          
+          <div className='m-6 text-center text-gray-500'>
+            <p>No tienes productos favoritos.</p>
+          </div>
         )}
       </div>
     </div>
@@ -47,4 +49,3 @@ const FavoritePage = () => {
 };
 
 export default FavoritePage;
-

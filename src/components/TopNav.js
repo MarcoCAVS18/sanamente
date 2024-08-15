@@ -39,7 +39,6 @@ const TopNav = () => {
         onClick={() => navigate('/favorite')}
       >
         <FontAwesomeIcon icon={faStar} className="text-white mr-2" />
-        <span className="text-white">Mis favoritos</span>
       </div>
     </div>
   );
