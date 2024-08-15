@@ -82,7 +82,7 @@ footer {
 
 .left-section {
   overflow: hidden;
-  width: 60%; /* Ancho del 75% para que el texto tenga más espacio */
+  width: 80%; /* Ancho del 75% para que el texto tenga más espacio */
   height: 100%;
 }
 
