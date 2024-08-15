@@ -4,31 +4,29 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 
+/* index.css */
 body {
   background-color: #FCFCFC;
   font-family: 'Lato', sans-serif;
   color: #363636;
-  margin: 0; 
+  margin: 0;
 }
 
 .App {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; 
+  min-height: 100vh;
 }
 
 footer {
   position: relative;
   bottom: 0;
-  width: 100%; 
+  width: 100%;
 }
-
-
 
 .min-h-screen {
   min-height: 100vh;
 }
-
 
 .carousel .slide {
   display: flex;
@@ -48,32 +46,75 @@ footer {
   display: none !important;
 }
 
-/* src/index.css */
 .social-media-icons a {
   color: #F0F2F3;
   transition: color 0.3s ease;
 }
 
 .social-media-icons a:hover {
-  color: #3ECC33; 
+  color: #3ECC33;
 }
 
 .category-container {
-  display: inline-flex; /* Cambia inline-block a inline-flex para mejor control del contenido */
+  display: inline-flex;
   align-items: center;
-  max-width: max-content; /* Limita el ancho del contenedor al contenido del texto */
+  max-width: max-content;
   border-radius: 999px;
 }
 
 .category-label {
-  background-color: green; /* o la clase tailwind bg-green-500 */
-  color: white; /* o la clase tailwind text-white */
-  padding: 0.25rem 0.5rem; /* o las clases tailwind px-2 py-1 */
-  border-radius: 9999px; /* o la clase tailwind rounded-full */
-  font-size: 0.75rem; /* o la clase tailwind text-xs */
-  font-weight: bold; /* o la clase tailwind font-bold */
-  white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+  background-color: green;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  white-space: nowrap;
 }
 
+/* Estilos para TopNav */
+.topnav {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  height: 48px;
+}
 
+.left-section {
+  overflow: hidden;
+  width: 60%; /* Ancho del 75% para que el texto tenga más espacio */
+  height: 100%;
+}
+
+.topnav-content {
+  position: relative;
+  width: 100%;
+}
+
+.message {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.message-show {
+  opacity: 1;
+}
+
+.message-hide {
+  opacity: 0;
+}
+
+.right-section {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 25%; /* Ancho del 25% para el lado derecho */
+  height: 100%;
+}
 

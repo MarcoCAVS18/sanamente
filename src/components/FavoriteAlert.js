@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import Promo from './Promo';
+import FavoriteAlert from './FavoriteAlert';
 
 const categoryColors = {
   'Almacen': '#b16b05',
@@ -17,9 +18,10 @@ const ProductCard = ({ product }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
   const [productPrices, setProductPrices] = useState([]);
+  const [favoriteMessage, setFavoriteMessage] = useState('');
+  const [showAlert, setShowAlert] = useState(false);
 
   useEffect(() => {
-    // Intenta convertir el campo prices a un array si es una cadena
     try {
       if (typeof product.prices === 'string') {
         const parsedPrices = JSON.parse(product.prices);
@@ -39,12 +41,17 @@ const ProductCard = ({ product }) => {
   };
 
   const handleToggleFavorite = () => {
-    setIsFavorite(!isFavorite);
-    showFavoriteAlert();
+    const newFavoriteStatus = !isFavorite;
+    setIsFavorite(newFavoriteStatus);
+    showFavoriteAlert(newFavoriteStatus);
   };
 
-  const showFavoriteAlert = () => {
-    alert('Producto agregado a favoritos');
+  const showFavoriteAlert = (isFavorite) => {
+    setFavoriteMessage(isFavorite ? 'Producto agregado a favoritos' : 'Producto eliminado de favoritos');
+    setShowAlert(true);
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 2000); // Alerta visible por 2 segundos
   };
 
   const categoryColor = categoryColors[product.category] || '#cccccc';
@@ -136,6 +143,8 @@ const ProductCard = ({ product }) => {
           </ul>
         </div>
       )}
+      {/* Mostrar alerta de favorito */}
+      <FavoriteAlert message={favoriteMessage} visible={showAlert} />
     </div>
   );
 };
