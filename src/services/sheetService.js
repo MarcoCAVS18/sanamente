@@ -34,7 +34,7 @@ export const fetchProducts = async () => {
         console.log('Parsed prices:', parsedPrices);
       } catch (e) {
         console.error('Error parsing prices:', e);
-        parsedPrices = []; // Valor predeterminado en caso de error
+        parsedPrices = []; 
       }
 
       return {
@@ -46,7 +46,7 @@ export const fetchProducts = async () => {
         promo: row[5],
         onlyPrice: row[6],
         imageUrl: row[7],
-        prices: Array.isArray(parsedPrices) ? parsedPrices : [], // Array vacío en caso de error
+        prices: Array.isArray(parsedPrices) ? parsedPrices : [],
       };
     });
 

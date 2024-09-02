@@ -43,7 +43,7 @@ const MainContainer = () => {
   };
 
   return (
-    <div className="main-container mx-auto max-w-full lg:max-w-6xl mt-20">
+    <div className="main-container mx-auto max-w-full lg:max-w-6xl">
       <SearchInput onSearch={handleSearch} />
       {showCarousel && <CategoryCarousel categories={categories} />}
       {showCarousel ? (
