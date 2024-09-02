@@ -22,18 +22,19 @@ export const fetchCategories = async () => {
 
 export const fetchProducts = async () => {
   try {
-    const response = await axios.get(`${BASE_URL}Products!A1:H100?key=${API_KEY}`);
+    const response = await axios.get(`${BASE_URL}Products!A1:I100?key=${API_KEY}`); // Asegúrate de que el rango cubre hasta la columna `prices`
     console.log('Products Response:', response.data); // Agrega un log aquí
     const products = response.data.values.slice(1).map(row => {
       let parsedPrices;
       try {
-        console.log('Raw prices value:', row[7]); // Columna H
+        console.log('Raw prices value:', row[8]); // Columna I para precios
 
-        parsedPrices = JSON.parse(row[7] || '[]');
+        // Asegúrate de que el contenido de row[8] sea un JSON válido
+        parsedPrices = JSON.parse(row[8] || '[]');
         console.log('Parsed prices:', parsedPrices);
       } catch (e) {
         console.error('Error parsing prices:', e);
-        parsedPrices = [];
+        parsedPrices = []; // Valor predeterminado en caso de error
       }
 
       return {
@@ -41,10 +42,11 @@ export const fetchProducts = async () => {
         name: row[1],
         category: row[2],
         description: row[3],
-        promo: row[4],
-        onlyPrice: row[5],
-        imageUrl: row[6], // Ahora corresponde a la columna G (imagen)
-        prices: Array.isArray(parsedPrices) ? parsedPrices : [], // Ahora corresponde a la columna H (prices)
+        featured: row[4] === '*',
+        promo: row[5],
+        onlyPrice: row[6],
+        imageUrl: row[7],
+        prices: Array.isArray(parsedPrices) ? parsedPrices : [], // Array vacío en caso de error
       };
     });
 

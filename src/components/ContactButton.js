@@ -26,7 +26,7 @@ const ContactButton = ({ show }) => {
         buttonElement.removeEventListener('mouseleave', handleMouseLeave);
       }
     };
-  }, []); // No se necesitan dependencias aquí
+  }, []); 
 
   return (
     <div className="relative" style={{ opacity: show ? 1 : 0, transition: 'opacity 0.5s ease-in-out', pointerEvents: show ? 'auto' : 'none' }}>

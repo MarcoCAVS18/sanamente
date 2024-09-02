@@ -4,7 +4,61 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 
-/* index.css */
+:root {
+  --spacing-top: 7rem; 
+}
+
+@media (min-width: 768px) {
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+  }
+
+  .header img {
+    max-height: 50px;
+    margin-right: 20px;
+  }
+
+  .search-input {
+    flex-grow: 1;
+    margin: 0 20px;
+  }
+
+  .product-card {
+    flex-direction: row;
+  }
+
+  .product-info {
+    flex: 1;
+  } 
+}
+
+@media (min-width: 1024px) {
+  .main-container {
+    min-height: calc(100vh - 200px); /* Ajusta según la altura del header y footer */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .product-list-container {
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Tres columnas para escritorio */
+    gap: 20px;
+  }
+
+  .contact-button {
+    width: 90%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+}
+
+
+
 body {
   background-color: #FCFCFC;
   font-family: 'Lato', sans-serif;
@@ -72,7 +126,6 @@ footer {
   white-space: nowrap;
 }
 
-/* Estilos para TopNav */
 .topnav {
   display: flex;
   justify-content: space-between;
@@ -80,22 +133,29 @@ footer {
   height: 48px;
 }
 
+.topnav + .content {
+  margin-top: var(--spacing-top);
+}
+
 .left-section {
-  overflow: hidden;
-  width: 100%; 
+  display: flex;
+  align-items: center;
+  width: auto; /* Adjust width as needed */
   height: 100%;
 }
 
 .topnav-content {
-  position: relative;
-  width: 100%;
+  display: flex;
+  align-items: center; /* Center items vertically */
+  height: 100%; /* Ensure it takes the full height of its parent */
 }
 
 .message {
   position: absolute;
-  top: 0;
+  top: 50%;
   left: 0;
   right: 0;
+  transform: translateY(-50%); /* Center vertically */
   opacity: 0;
   transition: opacity 1s ease-in-out;
   white-space: nowrap;
@@ -114,7 +174,50 @@ footer {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  width: 20%; /* Ancho del 25% para el lado derecho */
-  height: 100%;
+  width: 20%; /* Adjust width if necessary */
 }
+
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  min-height: auto; /* Permite que la altura se ajuste automáticamente */
+}
+
+
+.product-card h3 {
+  font-size: 1rem;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.product-card p {
+  font-size: 0.875rem;
+  color: #555;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.product-card .category-label {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  white-space: nowrap;
+}
+
+.product-list-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+
 

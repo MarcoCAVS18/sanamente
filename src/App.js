@@ -1,4 +1,3 @@
-// App.js
 import React, { useEffect, useState, useRef } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
@@ -37,9 +36,9 @@ function App() {
   return (
     <div className="App flex flex-col min-h-screen">
       <TopNav />
-      <div className="mt-12">
+      <div className="content flex-grow">
         <Header />
-        <main className="flex-grow">
+        <main>
           <Routes>
             <Route path="/" element={<MainContainer />} />
             <Route path="/category/:category" element={<CategoryPage />} />

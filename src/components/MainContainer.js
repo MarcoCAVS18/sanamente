@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import SearchInput from './SearchInput';
 import CategoryCarousel from './CategoryCarousel';
 import ProductList from './ProductList';
+import FeaturedProducts from './FeaturedProducts'; // Importa el nuevo componente
 import { fetchCategories, fetchProducts } from '../services/sheetService';
 
 const MainContainer = () => {
@@ -42,10 +43,14 @@ const MainContainer = () => {
   };
 
   return (
-    <div className="main-container mx-auto max-w-4xl">
+    <div className="main-container mx-auto max-w-full lg:max-w-6xl mt-20">
       <SearchInput onSearch={handleSearch} />
       {showCarousel && <CategoryCarousel categories={categories} />}
-      <ProductList products={filteredProducts} />
+      {showCarousel ? (
+        <FeaturedProducts products={allProducts} /> // Mostrar productos destacados cuando no hay búsqueda
+      ) : (
+        <ProductList products={filteredProducts} /> // Mostrar lista de productos cuando hay búsqueda
+      )}
     </div>
   );
 };

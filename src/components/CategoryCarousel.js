@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import 'swiper/css/autoplay';
 import { Link } from 'react-router-dom';
 
 const CategoryCarousel = ({ categories }) => {
@@ -10,7 +11,7 @@ const CategoryCarousel = ({ categories }) => {
 
   return (
     <div className="category-carousel">
-      <div className="m-4 flex items-baseline">
+      <div className="m-8 flex items-baseline">
         <h2 className="text-2xl font-bold">Categorías</h2>
         <p className="text-gray-500 text-xs ml-2">Desliza para ver más!</p>
       </div>
@@ -31,6 +32,7 @@ const CategoryCarousel = ({ categories }) => {
             spaceBetween: 50,
           },
         }}
+        autoplay={{ delay: 3000, disableOnInteraction: false }}
         pagination={{ clickable: true }}
         scrollbar={{ draggable: true }}
       >
