@@ -39,32 +39,39 @@ const OffersCarousel = ({ offers }) => {
   };
 
   return (
-    <div
-      className="offers-carousel"
-      ref={carouselRef}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-    >
+    <div className="offers-carousel">
+      <div className="title-container mb-4 flex items-center">
+        <h2 className="text-2xl font-bold">Ofertas para ti!</h2>
+      </div>
       <div
-        className={`flex ${
-          window.innerWidth > 768 ? "justify-start" : "transition-transform duration-500 ease-in-out"
-        }`}
-        style={{
-          transform: window.innerWidth <= 768 ? `translateX(-${currentIndex * 100}%)` : "none",
-          width: `${window.innerWidth > 768 ? '100%' : offers.length * 100}%`,
-        }}
+        className="carousel-container"
+        ref={carouselRef}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
       >
-        {offers.map((offer, index) => (
-          <div
-            key={index}
-            className="offer-card"
-          >
-            <OfferCard offer={offer} />
-          </div>
-        ))}
+        <div
+          className={`flex ${
+            window.innerWidth > 768 ? "justify-start" : "transition-transform duration-500 ease-in-out"
+          }`}
+          style={{
+            transform: window.innerWidth <= 768 ? `translateX(-${currentIndex * 100}%)` : "none",
+            width: `${window.innerWidth > 768 ? '100%' : offers.length * 100}%`,
+          }}
+        >
+          {offers.map((offer, index) => (
+            <div
+              key={index}
+              className="offer-card-container"
+            >
+              <OfferCard offer={offer} />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
 };
 
 export default OffersCarousel;
+
+

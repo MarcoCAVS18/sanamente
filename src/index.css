@@ -247,48 +247,78 @@ footer {
   pointer-events: all;
 }
 
+
 .offers-carousel {
   width: 100%;
   overflow: hidden;
   display: flex;
+  flex-direction: column; /* Ensure vertical stacking of title and carousel */
+}
+
+.title-container {
+  text-align: center; /* Center the title horizontally */
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
   justify-content: center;
 }
 
-.offer-card {
+.text-2xl {
+  font-size: 1.5rem;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.carousel-container {
+  display: flex;
+  /* Ensure the container width matches the number of cards */
+}
+
+.offer-card-container {
   flex: 0 0 100%; /* Ocupa todo el ancho en pantallas pequeñas */
   max-width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   box-sizing: border-box;
-  /* Padding removed to eliminate space between cards */
   padding: 0;
-  /* Margin removed to eliminate space between cards */
   margin: 0;
+  position: relative; /* Ensure positioning context for the image */
 }
 
-.offer-card img {
+.offer-card-container img {
   width: 100%;
-  height: auto;
+  height: 100%; /* Ensure the image covers the container */
+  object-fit: cover; /* Maintain aspect ratio and cover the entire container */
   transition: transform 0.3s ease-in-out;
 }
 
-.offer-card:hover img {
+.offer-card-container:hover img {
   transform: scale(1.1);
 }
 
-.offer-card:hover {
+.offer-card-container:hover {
   opacity: 0.7;
 }
 
 @media (min-width: 769px) {
-  .offers-carousel {
-    width: 100%; /* Ocupa todo el ancho disponible */
+  .carousel-container {
+    width: 100%;
   }
-  .offer-card {
-    flex: 0 0 30%; /* Ajusta el tamaño de las tarjetas en pantallas grandes */
-    max-width: 50%;
-    margin: 0;
-    padding: 0;
+  
+  .offer-card-container {
+    flex: 0 0 33.33%; /* Ocupa un tercio del ancho en pantallas grandes */
+    max-width: 33.33%;
   }
 }
