@@ -44,14 +44,18 @@ const CategoryPage = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <div className="flex-grow">
-        <h1 className="text-3xl font-bold ml-4 capitalize">{categoryName}</h1>
+      <div className="pl-8">
+        {/* Contenedor para el título y breadcrumb */}
+        <h1 className="text-3xl font-bold capitalize mb-2">{categoryName}</h1>
         <Breadcrumb
           items={[
             { label: 'Inicio', path: '/' },
-            { label: categoryName, path: `/category/${category}` } 
+            { label: categoryName, path: `/category/${category}` }
           ]}
         />
+      </div>
+      <div className="flex-grow py-2">
+        {/* Contenedor para SearchInput y CategoryProductList */}
         <SearchInput onSearch={handleSearch} />
         <CategoryProductList products={filteredProducts} />
       </div>

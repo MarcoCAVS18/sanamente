@@ -20,6 +20,22 @@ export const fetchCategories = async () => {
   }
 };
 
+export const fetchPromos = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}Promos!A1:B100?key=${API_KEY}`);
+    console.log('Promos Response:', response.data); // Agrega un log aquí
+    const promos = response.data.values.slice(1).map(row => ({
+      id: row[0],
+      message: row[1],
+    }));
+    return promos;
+  } catch (error) {
+    console.error('Error fetching promos:', error);
+    return [];
+  }
+};
+
+
 export const fetchProducts = async () => {
   try {
     const response = await axios.get(`${BASE_URL}Products!A1:I100?key=${API_KEY}`); // Asegúrate de que el rango cubre hasta la columna `prices`
@@ -56,3 +72,5 @@ export const fetchProducts = async () => {
     return [];
   }
 };
+
+

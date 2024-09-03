@@ -2,11 +2,26 @@ import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
+import { fetchPromos } from '../services/sheetService'; // Asegúrate de que esta ruta sea correcta
 import '../index.css';
 
 const TopNav = () => {
+  const [promos, setPromos] = useState([]);
   const [showFirstMessage, setShowFirstMessage] = useState(true);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const fetchedPromos = await fetchPromos();
+        setPromos(fetchedPromos);
+      } catch (error) {
+        console.error('Error fetching promos:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -24,20 +39,20 @@ const TopNav = () => {
           <div
             className={`message ${showFirstMessage ? 'message-show' : 'message-hide'} text-sm truncate`}
           >
-            Obten un 10% de descuento abonando en efectivo
+            {promos.length > 0 ? promos[0]?.message : 'Cargando mensajes...'}
           </div>
           <div
             className={`message ${!showFirstMessage ? 'message-show' : 'message-hide'} text-sm truncate`}
           >
-            Aceptamos todos los medios de pagos y cuotas!
+            {promos.length > 1 ? promos[1]?.message : 'Cargando mensajes...'}
           </div>
         </div>
       </div>
       {/* Lado derecho con el icono y texto */}
       <div
-        className="right-section flex justify-end items-center ml-4 cursor-pointer flex-none w-10 "
+        className="right-section flex justify-end items-center ml-4 cursor-pointer flex-none w-10 hover:text-[#aeca0d]"
         onClick={() => navigate('/favorite')}
-        style={{ width: '40px' }} // Espacio fijo para el icono
+        style={{ width: '40px' }} 
       >
         <FontAwesomeIcon icon={faStar} className="text-white hover:text-[#aeca0d]" />
       </div>
@@ -46,4 +61,3 @@ const TopNav = () => {
 };
 
 export default TopNav;
-
