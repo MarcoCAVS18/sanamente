@@ -4,62 +4,12 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 
+/* Variables */
 :root {
-  --spacing-top: 3rem; 
+  --spacing-top: 3rem;
 }
 
-@media (min-width: 768px) {
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-  }
-
-  .logo {
-    max-width: 100px; 
-  }
-
-  .search-input {
-    flex-grow: 1;
-    margin: 0 20px;
-  }
-
-  .product-card {
-    flex-direction: row;
-  }
-
-  .product-info {
-    flex: 1;
-  } 
-}
-
-@media (min-width: 1024px) {
-  .main-container {
-    min-height: calc(100vh - 200px);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  #logo {
-    width: 50%; 
-  }
-
-  .product-list-container {
-    flex-grow: 1;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
-
-  .contact-button {
-    width: 90%;
-    max-width: 300px;
-    margin: 0 auto;
-  }
-}
-
+/* Body */
 body {
   background-color: #FCFCFC;
   font-family: 'Lato', sans-serif;
@@ -67,122 +17,85 @@ body {
   margin: 0;
 }
 
+/* App Container */
 .App {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
+/* Header Styling */
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
+  width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
+  background-color: #FFF; /* Añade un fondo blanco para visualizar mejor el contenido */
+  padding: 0.5rem; /* Ajusta el padding si es necesario */
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%; /* Asegura que el contenedor del logo ocupe todo el ancho disponible */
+  max-width: 800px;
+}
+
+/* Ajuste del logo */
+.header-logo svg {
+  width: auto; /* Mantiene el tamaño original del SVG */
+  height: auto; /* Mantiene el tamaño original del SVG */
+  max-width: 30%; /* Ajusta el tamaño máximo del logo */
+  margin: 0 auto;
+}
+
+/* Estilos específicos para pantallas grandes */
+@media (min-width: 1024px) {
+  .header-logo {
+    width: 50%; /* Ajusta el tamaño del contenedor al 50% en pantallas grandes */
+  }
+
+  .header-logo svg {
+    max-width: 80px; /* Tamaño máximo del logo en pantallas grandes */
+  }
+}
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 1024px) {
+  .header-logo {
+    width: auto; /* Mantiene el tamaño original del contenedor en pantallas pequeñas */
+  }
+
+  .header-logo svg {
+    max-width: 100%; /* Asegura que el logo se ajuste al tamaño del contenedor en pantallas pequeñas */
+  }
+}
+
+/* Footer */
 footer {
   position: relative;
   bottom: 0;
   width: 100%;
 }
 
-#logo {
-  width: 100%;
-  height: auto;
-}
-
-.min-h-screen {
-  min-height: 100vh;
-}
-
-.carousel .slide {
+/* Main Container */
+.main-container {
+  min-height: calc(100vh - 200px);
   display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.carousel .carousel-slider {
-  overflow: hidden;
-}
-
-.carousel .control-dots {
-  display: none !important;
-}
-
-.carousel .carousel-status {
-  display: none !important;
-}
-
-.social-media-icons a {
-  color: #F0F2F3;
-  transition: color 0.3s ease;
-}
-
-.social-media-icons a:hover {
-  color: #3ECC33;
-}
-
-.category-container {
-  display: inline-flex;
-  align-items: center;
-  max-width: max-content;
-  border-radius: 999px;
-}
-
-.category-label {
-  background-color: green;
-  color: white;
-  padding: 0.25rem 0.5rem;
-  border-radius: 9999px;
-  font-size: 0.75rem;
-  font-weight: bold;
-  white-space: nowrap;
-}
-
-.topnav {
-  display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  padding: 0.75rem 1rem;
-  height: 48px;
 }
 
-.topnav + .content {
-  margin-top: var(--spacing-top);
+/* Product List Container */
+.product-list-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
 }
 
-.left-section {
-  display: flex;
-  align-items: center;
-  width: auto;
-  height: 100%;
-}
-
-.topnav-content {
-  display: flex;
-  align-items: center;
-  height: 100%;
-}
-
-.message {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  transform: translateY(-50%);
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-  white-space: nowrap;
-  text-align: center;
-}
-
-.message-show {
-  opacity: 1;
-}
-
-.message-hide {
-  opacity: 0;
-}
-
-.right-section {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  width: 20%;
-}
-
+/* Product Card */
 .product-card {
   display: flex;
   flex-direction: column;
@@ -217,8 +130,103 @@ footer {
   white-space: nowrap;
 }
 
-.product-list-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
+/* Category Container */
+.category-container {
+  display: inline-flex;
+  align-items: center;
+  max-width: max-content;
+  border-radius: 999px;
+}
+
+.category-label {
+  background-color: green;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+/* Top Navigation */
+.topnav {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  height: 48px;
+}
+
+.topnav + .content {
+  margin-top: var(--spacing-top);
+}
+
+.left-section {
+  display: flex;
+  align-items: center;
+  width: auto;
+  height: 100%;
+}
+
+.topnav-content {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+/* Message */
+.message {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.message-show {
+  opacity: 1;
+}
+
+.message-hide {
+  opacity: 0;
+}
+
+/* Right Section */
+.right-section {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 20%;
+}
+
+/* Carousel */
+.carousel .slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel .carousel-slider {
+  overflow: hidden;
+}
+
+.carousel .control-dots {
+  display: none !important;
+}
+
+.carousel .carousel-status {
+  display: none !important;
+}
+
+/* Social Media Icons */
+.social-media-icons a {
+  color: #F0F2F3;
+  transition: color 0.3s ease;
+}
+
+.social-media-icons a:hover {
+  color: #3ECC33;
 }
