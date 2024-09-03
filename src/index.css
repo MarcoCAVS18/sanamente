@@ -188,7 +188,7 @@ footer {
 .message {
   position: absolute;
   top: 50%;
-  transform: translate(5%, -50%); /* Centra los mensajes dentro del contenedor */
+  transform: translate(2%, -50%); /* Centra los mensajes dentro del contenedor */
   opacity: 0;
   transition: opacity 1s ease-in-out;
   white-space: nowrap;

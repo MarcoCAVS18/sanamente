@@ -7,7 +7,7 @@ const FeaturedProducts = ({ products }) => {
 
   return (
     <div className="featured-products">
-      <div className="m-6 flex items-baseline">
+      <div className="m-2 mb-4 flex items-baseline">
         <h2 className="text-2xl font-bold">Productos Destacados!</h2>
       </div>
       {featuredProducts.length > 0 ? (

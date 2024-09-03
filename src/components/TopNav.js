@@ -48,11 +48,11 @@ const TopNav = () => {
           </div>
         </div>
       </div>
-      {/* Lado derecho con el icono y texto */}
+      {/* Lado derecho con el icono */}
       <div
         className="right-section flex justify-end items-center ml-4 cursor-pointer flex-none w-10 hover:text-[#aeca0d]"
         onClick={() => navigate('/favorite')}
-        style={{ width: '40px' }} 
+        style={{ width: '20px' }} 
       >
         <FontAwesomeIcon icon={faStar} className="text-white hover:text-[#aeca0d]" />
       </div>
