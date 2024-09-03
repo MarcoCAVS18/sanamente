@@ -1,3 +1,4 @@
+// src/App.js
 import React, { useEffect, useState, useRef } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
@@ -42,6 +43,7 @@ function App() {
           <Routes>
             <Route path="/" element={<MainContainer />} />
             <Route path="/category/:category" element={<CategoryPage />} />
+            <Route path="/all" element={<CategoryPage />} />
             <Route path="/favorite" element={<FavoritePage />} />
           </Routes>
         </main>

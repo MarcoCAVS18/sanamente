@@ -5,35 +5,29 @@ import CategoryProductList from '../components/CategoryProductList';
 import Breadcrumb from '../components/Breadcrumb';
 import { fetchProducts } from '../services/sheetService';
 
-const categoryMap = {
-  'almacen': 'Almacen',
-  'lacteos': 'Lacteos',
-  'frutos-secos': 'Frutos secos',
-  'cereales-y-harinas': 'Cereales y Harinas',
-  'condimentos-y-especias': 'Condimentos y Especias',
-  'granos-y-semillas': 'Granos y Semillas',
-  'snacks': 'Snacks'
-};
-
 const CategoryPage = () => {
   const { category } = useParams();
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const categoryName = categoryMap[category] || category;
+  const categoryName = category === 'all' ? 'Todos nuestros productos:' : category;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const productsData = await fetchProducts();
-        const initialFiltered = productsData.filter((product) =>
-          product.category.toLowerCase() === categoryName.toLowerCase()
-        );
-        setFilteredProducts(initialFiltered);
+        if (category === 'all') {
+          setFilteredProducts(productsData);
+        } else {
+          const initialFiltered = productsData.filter((product) =>
+            product.category.toLowerCase() === category.toLowerCase()
+          );
+          setFilteredProducts(initialFiltered);
+        }
       } catch (error) {
         console.error('Error fetching products:', error);
       }
     };
     fetchData();
-  }, [category, categoryName]); // Dependencia para actualizar al cambiar la categoría
+  }, [category]);
 
   const handleSearch = (term) => {
     const filtered = filteredProducts.filter((product) =>
@@ -45,17 +39,15 @@ const CategoryPage = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <div className="pl-8">
-        {/* Contenedor para el título y breadcrumb */}
         <h1 className="text-3xl font-bold capitalize mb-2">{categoryName}</h1>
         <Breadcrumb
           items={[
             { label: 'Inicio', path: '/' },
-            { label: categoryName, path: `/category/${category}` }
+            { label: category === 'all' ? 'Todos los productos' : categoryName, path: `/category/${category}` }
           ]}
         />
       </div>
       <div className="flex-grow py-2">
-        {/* Contenedor para SearchInput y CategoryProductList */}
         <SearchInput onSearch={handleSearch} />
         <CategoryProductList products={filteredProducts} />
       </div>
@@ -64,3 +56,5 @@ const CategoryPage = () => {
 };
 
 export default CategoryPage;
+
+

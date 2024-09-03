@@ -3,12 +3,21 @@ import React, { useState, useEffect } from 'react';
 import SearchInput from './SearchInput';
 import CategoryCarousel from './CategoryCarousel';
 import ProductList from './ProductList';
-import FeaturedProducts from './FeaturedProducts'; // Importa el nuevo componente
+import FeaturedProducts from './FeaturedProducts'; 
+import OffersCarousel from './OffersCarousel'; // Importa el nuevo componente
 import { fetchCategories, fetchProducts } from '../services/sheetService';
+
+// Datos estáticos para las ofertas
+const staticOffers = [
+  { id: 1, title: 'Oferta 1', description: 'Descripción de la oferta 1', link: '#', buttonText: 'Más Info' },
+  { id: 2, title: 'Oferta 2', description: 'Descripción de la oferta 2', link: '#', buttonText: 'Más Info' },
+  { id: 3, title: 'Oferta 3', description: 'Descripción de la oferta 3', link: '#', buttonText: 'Más Info' },
+  // Añade más ofertas si es necesario
+];
 
 const MainContainer = () => {
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [allProducts, setAllProducts] = useState([]); // Estado separado para todos los productos
+  const [allProducts, setAllProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [showCarousel, setShowCarousel] = useState(true);
 
@@ -22,7 +31,7 @@ const MainContainer = () => {
 
         const productsData = await fetchProducts();
         console.log('Products fetched:', productsData);
-        setAllProducts(productsData); // Guardamos todos los productos en un estado separado
+        setAllProducts(productsData);
         setFilteredProducts(productsData);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -49,9 +58,12 @@ const MainContainer = () => {
       </div>
       {showCarousel && <CategoryCarousel categories={categories} />}
       {showCarousel ? (
-        <FeaturedProducts products={allProducts} /> // Mostrar productos destacados cuando no hay búsqueda
+        <>
+          <FeaturedProducts products={allProducts} />
+          <OffersCarousel offers={staticOffers} /> {/* Agrega el carrusel de ofertas después de los productos destacados */}
+        </>
       ) : (
-        <ProductList products={filteredProducts} /> // Mostrar lista de productos cuando hay búsqueda
+        <ProductList products={filteredProducts} />
       )}
     </div>
   );

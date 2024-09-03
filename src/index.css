@@ -246,3 +246,21 @@ footer {
   height: auto;
   pointer-events: all;
 }
+
+
+.offer-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.offer-card img {
+  transition: transform 0.3s ease-in-out;
+}
+
+.offer-card:hover img {
+  transform: scale(1.1);
+}
+
+.offer-card:hover {
+  opacity: 0.7;
+}
