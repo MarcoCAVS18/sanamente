@@ -29,49 +29,50 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
-  width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
-  background-color: #FFF; /* Añade un fondo blanco para visualizar mejor el contenido */
-  padding: 0.5rem; /* Ajusta el padding si es necesario */
+  height: auto;
+  position: relative;
 }
 
 .header-logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%; /* Asegura que el contenedor del logo ocupe todo el ancho disponible */
-  max-width: 800px;
+  display: inline-block;
+
 }
 
 /* Ajuste del logo */
 .header-logo svg {
-  width: auto; /* Mantiene el tamaño original del SVG */
-  height: auto; /* Mantiene el tamaño original del SVG */
-  max-width: 30%; /* Ajusta el tamaño máximo del logo */
-  margin: 0 auto;
+  width: 100%;
+  height: auto;
 }
 
 /* Estilos específicos para pantallas grandes */
 @media (min-width: 1024px) {
   .header-logo {
-    width: 50%; /* Ajusta el tamaño del contenedor al 50% en pantallas grandes */
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+     /* Ajusta el tamaño del contenedor al 50% en pantallas grandes */
   }
 
   .header-logo svg {
-    max-width: 80px; /* Tamaño máximo del logo en pantallas grandes */
+    max-width: 100%;
+    height: auto;
   }
+
 }
 
 /* Estilos para pantallas pequeñas */
 @media (max-width: 1024px) {
   .header-logo {
-    width: auto; /* Mantiene el tamaño original del contenedor en pantallas pequeñas */
+    width: auto;
   }
 
-  .header-logo svg {
-    max-width: 100%; /* Asegura que el logo se ajuste al tamaño del contenedor en pantallas pequeñas */
+  .search-input-container {
+    padding-top: 1rem; 
   }
 }
+
+
 
 /* Footer */
 footer {
@@ -229,4 +230,18 @@ footer {
 
 .social-media-icons a:hover {
   color: #3ECC33;
+}
+
+
+.svg-container {
+  display: block;
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+
+.svg-container svg {
+  width: 100%;
+  height: auto;
+  pointer-events: all;
 }

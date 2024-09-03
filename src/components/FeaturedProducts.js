@@ -6,8 +6,8 @@ const FeaturedProducts = ({ products }) => {
   const featuredProducts = products.filter(product => product.featured);
 
   return (
-    <div className="featured-products mt-8">
-      <div className="m-8 flex items-baseline">
+    <div className="featured-products">
+      <div className="m-6 flex items-baseline">
         <h2 className="text-2xl font-bold">Productos Destacados!</h2>
       </div>
       {featuredProducts.length > 0 ? (

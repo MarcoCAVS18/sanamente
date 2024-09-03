@@ -44,7 +44,9 @@ const MainContainer = () => {
 
   return (
     <div className="main-container mx-auto max-w-full lg:max-w-6xl">
-      <SearchInput onSearch={handleSearch} />
+      <div className="search-input-container">
+        <SearchInput onSearch={handleSearch} />
+      </div>
       {showCarousel && <CategoryCarousel categories={categories} />}
       {showCarousel ? (
         <FeaturedProducts products={allProducts} /> // Mostrar productos destacados cuando no hay búsqueda

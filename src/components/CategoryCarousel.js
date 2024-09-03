@@ -11,7 +11,7 @@ const CategoryCarousel = ({ categories }) => {
 
   return (
     <div className="category-carousel">
-      <div className="m-8 flex items-baseline">
+      <div className="m-6 flex items-baseline">
         <h2 className="text-2xl font-bold">Categorías</h2>
         <p className="text-gray-500 text-xs ml-2">Desliza para ver más!</p>
       </div>
