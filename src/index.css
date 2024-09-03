@@ -247,13 +247,29 @@ footer {
   pointer-events: all;
 }
 
+.offers-carousel {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
 
 .offer-card {
-  position: relative;
-  overflow: hidden;
+  flex: 0 0 100%; /* Ocupa todo el ancho en pantallas pequeñas */
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  /* Padding removed to eliminate space between cards */
+  padding: 0;
+  /* Margin removed to eliminate space between cards */
+  margin: 0;
 }
 
 .offer-card img {
+  width: 100%;
+  height: auto;
   transition: transform 0.3s ease-in-out;
 }
 
@@ -263,4 +279,16 @@ footer {
 
 .offer-card:hover {
   opacity: 0.7;
+}
+
+@media (min-width: 769px) {
+  .offers-carousel {
+    width: 100%; /* Ocupa todo el ancho disponible */
+  }
+  .offer-card {
+    flex: 0 0 30%; /* Ajusta el tamaño de las tarjetas en pantallas grandes */
+    max-width: 50%;
+    margin: 0;
+    padding: 0;
+  }
 }
