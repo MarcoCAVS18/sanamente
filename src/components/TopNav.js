@@ -2,59 +2,63 @@ import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
-import { fetchPromos } from '../services/sheetService'; // Asegúrate de que esta ruta sea correcta
+import { fetchOffers } from '../services/sheetService'; // Asegúrate de que el path es correcto
 import '../index.css';
 
 const TopNav = () => {
-  const [promos, setPromos] = useState([]);
-  const [showFirstMessage, setShowFirstMessage] = useState(true);
+  const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
+  const [messages, setMessages] = useState([]);
+  const [previousMessageIndex, setPreviousMessageIndex] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const fetchedPromos = await fetchPromos();
-        setPromos(fetchedPromos);
-      } catch (error) {
-        console.error('Error fetching promos:', error);
-      }
+    const getOffers = async () => {
+      const offers = await fetchOffers();
+      console.log('Messages in TopNav:', offers); // Log para verificar los mensajes en el componente
+      setMessages(offers.map(offer => offer.message));
     };
 
-    fetchData();
+    getOffers();
   }, []);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setShowFirstMessage((prev) => !prev);
-    }, 6000);
+    if (messages.length > 0) {
+      const interval = setInterval(() => {
+        setPreviousMessageIndex(currentMessageIndex);
+        setCurrentMessageIndex((prevIndex) => (prevIndex + 1) % messages.length);
+      }, 6000);
 
-    return () => clearInterval(interval);
-  }, []);
+      return () => clearInterval(interval);
+    }
+  }, [messages, currentMessageIndex]);
 
   return (
     <div className="topnav bg-[#BE4391] text-white fixed top-0 left-0 w-full flex justify-between items-center p-2 z-50">
       {/* Lado izquierdo con la animación */}
-      <div className="left-section flex items-center max-w-full overflow-hidden flex-grow">
-        <div className="topnav-content flex items-center max-w-full">
-          <div
-            className={`message ${showFirstMessage ? 'message-show' : 'message-hide'} text-sm truncate`}
-          >
-            {promos.length > 0 ? promos[0]?.message : 'Cargando mensajes...'}
-          </div>
-          <div
-            className={`message ${!showFirstMessage ? 'message-show' : 'message-hide'} text-sm truncate`}
-          >
-            {promos.length > 1 ? promos[1]?.message : 'Cargando mensajes...'}
-          </div>
+      <div className="left-section flex items-center">
+        <div className="topnav-content flex items-center">
+          {messages.map((message, index) => (
+            <div
+              key={index}
+              className={`message ${
+                index === currentMessageIndex
+                  ? 'message-show'
+                  : index === previousMessageIndex
+                  ? 'message-hide'
+                  : ''
+              }`}
+            >
+              {message}
+            </div>
+          ))}
         </div>
       </div>
-      {/* Lado derecho con el icono */}
+      {/* Lado derecho con el icono y texto */}
       <div
-        className="right-section flex justify-end items-center ml-4 cursor-pointer flex-none w-10 hover:text-[#aeca0d]"
+        className="right-section flex justify-end items-center cursor-pointer"
         onClick={() => navigate('/favorite')}
-        style={{ width: '20px' }} 
       >
-        <FontAwesomeIcon icon={faStar} className="text-white hover:text-[#aeca0d]" />
+        <FontAwesomeIcon icon={faStar} className="text-white mr-2" />
       </div>
     </div>
   );

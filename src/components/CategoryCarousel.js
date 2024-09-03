@@ -8,10 +8,11 @@ import { Link } from 'react-router-dom';
 
 const CategoryCarousel = ({ categories }) => {
   console.log('Rendering CategoryCarousel with categories:', categories);
+  
 
   return (
     <div className="category-carousel">
-      <div className="m-2 mb-4  flex items-baseline">
+      <div className="m-2 mb-4 flex items-baseline">
         <h2 className="text-2xl font-bold">Categorías</h2>
         <p className="text-gray-500 text-xs ml-2">Desliza para ver más!</p>
       </div>
@@ -37,7 +38,7 @@ const CategoryCarousel = ({ categories }) => {
         scrollbar={{ draggable: true }}
       >
         {categories.map((category) => (
-          <SwiperSlide key={category.name}>
+          <SwiperSlide key={category.id}> {/* Cambiado a category.id */}
             <Link to={`/category/${category.name.toLowerCase().replace(/ /g, '-')}`} className="block">
               <div className="category-item text-center mb-6">
                 <img src={category.imageUrl} alt={category.name} className="w-full h-auto mb-2" />

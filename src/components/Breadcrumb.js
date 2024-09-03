@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Breadcrumb = ({ items }) => {
   return (
-    <nav className="text-gray-400 text-sm mb-4">
+    <nav className="text-gray-400 text-sm mb-4 ml-4">
       <ol className="list-reset flex">
         {items.map((item, index) => (
           <React.Fragment key={index}>

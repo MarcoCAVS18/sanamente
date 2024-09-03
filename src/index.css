@@ -164,7 +164,7 @@ footer {
   display: flex;
   align-items: center;
   width: auto;
-  height: 100%;
+  white-space: nowrap;
   position: relative;
 }
 
@@ -180,7 +180,6 @@ footer {
 .topnav-content {
   display: flex;
   align-items: center;
-  height: 100%;
   position: relative;
 }
 

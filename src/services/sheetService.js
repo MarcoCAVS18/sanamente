@@ -7,11 +7,15 @@ const BASE_URL = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/valu
 export const fetchCategories = async () => {
   try {
     const response = await axios.get(`${BASE_URL}Categories!A1:C100?key=${API_KEY}`);
-    console.log('Categories Response:', response.data); // Agrega un log aquí
+
+    console.log('API Response:', response.data);
+
+    console.log('Categories Response:', response.data);
     const categories = response.data.values.slice(1).map(row => ({
       id: row[0],
       name: row[1],
       imageUrl: row[2],
+      
     }));
     return categories;
   } catch (error) {
@@ -20,25 +24,27 @@ export const fetchCategories = async () => {
   }
 };
 
-export const fetchPromos = async () => {
+export const fetchOffers = async () => {
   try {
-    const response = await axios.get(`${BASE_URL}Promos!A1:B100?key=${API_KEY}`);
-    console.log('Promos Response:', response.data); // Agrega un log aquí
-    const promos = response.data.values.slice(1).map(row => ({
+    const response = await axios.get(`${BASE_URL}Offers!A1:B100?key=${API_KEY}`);
+    console.log('Offers Response:', response.data); // Log completo de la respuesta
+    const offers = response.data.values.slice(1).map(row => ({
       id: row[0],
       message: row[1],
     }));
-    return promos;
+    console.log('Parsed Offers:', offers); // Log de las ofertas ya parseadas
+    return offers;
   } catch (error) {
-    console.error('Error fetching promos:', error);
+    console.error('Error fetching offers:', error);
     return [];
   }
 };
 
 
+
 export const fetchProducts = async () => {
   try {
-    const response = await axios.get(`${BASE_URL}Products!A1:I100?key=${API_KEY}`); // Asegúrate de que el rango cubre hasta la columna `prices`
+    const response = await axios.get(`${BASE_URL}Products!A1:I200?key=${API_KEY}`); // Asegúrate de que el rango cubre hasta la columna `prices`
     console.log('Products Response:', response.data); // Agrega un log aquí
     const products = response.data.values.slice(1).map(row => {
       let parsedPrices;

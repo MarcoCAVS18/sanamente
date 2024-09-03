@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 import Promo from './Promo';
 import FavoriteAlert from './FavoriteAlert';
 
@@ -21,12 +22,10 @@ const ProductCard = ({ product }) => {
   const [alertVisible, setAlertVisible] = useState(false);
 
   useEffect(() => {
-    // Cargar la lista de favoritos y comprobar si el producto está en ella
     const currentFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
     const isProductFavorite = currentFavorites.some(favProduct => favProduct.id === product.id);
     setIsFavorite(isProductFavorite);
 
-    // Analizar los precios del producto
     try {
       if (typeof product.prices === 'string') {
         const parsedPrices = JSON.parse(product.prices);
@@ -39,7 +38,6 @@ const ProductCard = ({ product }) => {
     } catch (error) {
       console.error('Error parsing prices:', error);
     }
-    console.log('Product data:', product);
   }, [product]);
 
   const handleToggleExpand = () => {
@@ -67,6 +65,7 @@ const ProductCard = ({ product }) => {
   };
 
   const categoryColor = categoryColors[product.category] || '#cccccc';
+  const categorySlug = product.category.toLowerCase().replace(/\s+/g, '-');
 
   return (
     <div className="bg-white rounded-lg shadow-md p-4 mb-4 relative flex flex-col">
@@ -84,12 +83,13 @@ const ProductCard = ({ product }) => {
                 className="category-container"
                 style={{ backgroundColor: categoryColor }}
               >
-                <span
+                <Link
+                  to={`/category/${categorySlug}`}
                   className="category-label"
                   style={{ backgroundColor: categoryColor }}
                 >
                   {product.category}
-                </span>
+                </Link>
               </div>
               <h3 className="text-base sm:text-lg font-bold mb-1">{product.name}</h3>
               <p className="text-xs sm:text-sm text-gray-500">{product.description}</p>
