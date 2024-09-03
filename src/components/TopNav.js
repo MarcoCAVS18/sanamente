@@ -19,15 +19,15 @@ const TopNav = () => {
   return (
     <div className="topnav bg-[#BE4391] text-white fixed top-0 left-0 w-full flex justify-between items-center p-2 z-50">
       {/* Lado izquierdo con la animación */}
-      <div className="left-section flex items-center">
-        <div className="topnav-content flex items-center">
+      <div className="left-section flex items-center max-w-full overflow-hidden flex-grow">
+        <div className="topnav-content flex items-center max-w-full">
           <div
-            className={`message ${showFirstMessage ? 'message-show' : 'message-hide'}`}
+            className={`message ${showFirstMessage ? 'message-show' : 'message-hide'} text-sm truncate`}
           >
             Obten un 10% de descuento abonando en efectivo
           </div>
           <div
-            className={`message ${!showFirstMessage ? 'message-show' : 'message-hide'}`}
+            className={`message ${!showFirstMessage ? 'message-show' : 'message-hide'} text-sm truncate`}
           >
             Aceptamos todos los medios de pagos y cuotas!
           </div>
@@ -35,13 +35,15 @@ const TopNav = () => {
       </div>
       {/* Lado derecho con el icono y texto */}
       <div
-        className="right-section flex justify-end items-center cursor-pointer"
+        className="right-section flex justify-end items-center ml-4 cursor-pointer flex-none w-10 "
         onClick={() => navigate('/favorite')}
+        style={{ width: '40px' }} // Espacio fijo para el icono
       >
-        <FontAwesomeIcon icon={faStar} className="text-white mr-2" />
+        <FontAwesomeIcon icon={faStar} className="text-white hover:text-[#aeca0d]" />
       </div>
     </div>
   );
 };
 
 export default TopNav;
+

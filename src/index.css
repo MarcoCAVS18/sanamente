@@ -38,20 +38,17 @@ body {
 
 }
 
-/* Ajuste del logo */
 .header-logo svg {
   width: 100%;
   height: auto;
 }
 
-/* Estilos específicos para pantallas grandes */
 @media (min-width: 1024px) {
   .header-logo {
     width: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-     /* Ajusta el tamaño del contenedor al 50% en pantallas grandes */
   }
 
   .header-logo svg {
@@ -61,18 +58,20 @@ body {
 
 }
 
-/* Estilos para pantallas pequeñas */
 @media (max-width: 1024px) {
   .header-logo {
     width: auto;
+  }
+
+  .header-logo svg {
+    width: 440px !important; /* Ajusta el tamaño relativo del logo */
+    height: auto;
   }
 
   .search-input-container {
     padding-top: 1rem; 
   }
 }
-
-
 
 /* Footer */
 footer {
@@ -166,21 +165,31 @@ footer {
   align-items: center;
   width: auto;
   height: 100%;
+  position: relative;
+}
+
+/* Right Section */
+.right-section {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-shrink: 0;
+  width: 40px; 
 }
 
 .topnav-content {
   display: flex;
   align-items: center;
   height: 100%;
+  position: relative;
 }
 
 /* Message */
 .message {
   position: absolute;
   top: 50%;
-  left: 0;
-  right: 0;
-  transform: translateY(-50%);
+  left: 50%;
+  transform: translate(10%, -50%); /* Centra los mensajes dentro del contenedor */
   opacity: 0;
   transition: opacity 1s ease-in-out;
   white-space: nowrap;
@@ -195,13 +204,7 @@ footer {
   opacity: 0;
 }
 
-/* Right Section */
-.right-section {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  width: 20%;
-}
+
 
 /* Carousel */
 .carousel .slide {
