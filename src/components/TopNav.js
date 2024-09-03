@@ -1,3 +1,4 @@
+// src/components/TopNav.js
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
@@ -35,8 +36,8 @@ const TopNav = () => {
   return (
     <div className="topnav bg-[#BE4391] text-white fixed top-0 left-0 w-full flex justify-between items-center p-2 z-50">
       {/* Lado izquierdo con la animación */}
-      <div className="left-section flex items-center">
-        <div className="topnav-content flex items-center">
+      <div className="left-section flex items-center flex-1">
+        <div className="topnav-content flex items-center text-xs md:text-sm">
           {messages.map((message, index) => (
             <div
               key={index}
@@ -55,7 +56,7 @@ const TopNav = () => {
       </div>
       {/* Lado derecho con el icono y texto */}
       <div
-        className="right-section flex justify-end items-center cursor-pointer"
+        className="right-section flex justify-end items-center cursor-pointer text-xs md:text-sm"
         onClick={() => navigate('/favorite')}
       >
         <FontAwesomeIcon icon={faStar} className="text-white mr-2" />
@@ -65,3 +66,4 @@ const TopNav = () => {
 };
 
 export default TopNav;
+
