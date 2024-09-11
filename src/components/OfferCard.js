@@ -28,7 +28,7 @@ const OfferCard = ({ offer, index }) => {
 
   return (
     <div
-      className={`offer-card bg-white p-4 shadow-md rounded-lg h-full flex items-center justify-center overflow-hidden ${index !== 1 ? 'cursor-pointer hover:opacity-70' : ''}`}
+      className={`offer-card rounded-lg h-full flex items-center justify-center overflow-hidden ${index !== 1 ? 'cursor-pointer hover:opacity-70' : ''}`}
       onClick={index !== 1 ? handleClick : null} // Evita que la segunda tarjeta sea clickeable
     >
       <img 
