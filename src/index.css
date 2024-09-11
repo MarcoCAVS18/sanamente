@@ -131,6 +131,16 @@ footer {
   white-space: nowrap;
 }
 
+.text-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.text-responsive {
+  font-size: clamp(16px, 2vw, 12px);
+}
+
 /* Category Container */
 .category-container {
   display: inline-flex;

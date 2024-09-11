@@ -91,8 +91,10 @@ const ProductCard = ({ product }) => {
                   {product.category}
                 </Link>
               </div>
-              <h3 className="text-base sm:text-lg font-bold mb-1">{product.name}</h3>
-              <p className="text-xs sm:text-sm text-gray-500">{product.description}</p>
+              <div className='select-none'>
+                <h3 className="text-base sm:text-lg font-bold mb-1 text-ellipsis text-responsive">{product.name}</h3>
+                <p className="text-xs sm:text-sm text-gray-500 text-ellipsis text-responsive">{product.description}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -143,11 +145,10 @@ const ProductCard = ({ product }) => {
             {productPrices.map((price, index) => (
               <li
                 key={index}
-                className={`text-xs sm:text-sm flex items-center justify-center p-2 border border-gray-300 rounded-md ${
-                  (productPrices.length % 2 === 1 && index === productPrices.length - 1)
+                className={`text-xs sm:text-sm flex items-center justify-center p-2 border border-gray-300 rounded-md ${(productPrices.length % 2 === 1 && index === productPrices.length - 1)
                     ? 'col-span-2'
                     : ''
-                }`}
+                  }`}
               >
                 {price.type}: ${price.price}
               </li>

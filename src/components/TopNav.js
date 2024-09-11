@@ -37,7 +37,7 @@ const TopNav = () => {
     <div className="topnav bg-[#BE4391] text-white fixed top-0 left-0 w-full flex justify-between items-center p-2 z-50">
       {/* Lado izquierdo con la animación */}
       <div className="left-section flex items-center flex-1">
-        <div className="topnav-content flex items-center text-xs md:text-sm">
+        <div className="topnav-content flex items-center text-xs md:text-sm select-none">
           {messages.map((message, index) => (
             <div
               key={index}

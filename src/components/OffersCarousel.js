@@ -53,7 +53,7 @@ const OffersCarousel = ({ offers }) => {
 
   return (
     <div className="offers-carousel">
-      <div className="title-container my-4 flex items-center">
+      <div className="title-container my-4 flex items-center select-none">
         <h2 className="text-2xl font-bold">Ofertas para ti!</h2>
       </div>
       <div
