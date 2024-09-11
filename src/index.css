@@ -12,6 +12,8 @@
 
 /* Body */
 body {
+  width: 100%;
+  overflow-x: hidden;
   background-color: #FCFCFC;
   font-family: 'Lato', sans-serif;
   color: #363636;
