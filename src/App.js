@@ -7,7 +7,7 @@ import Footer from './components/Footer';
 import ContactButton from './components/ContactButton';
 import SocialMedia from './components/SocialMedia';
 import CategoryPage from './page/CategoryPage';
-import AllPage from './page/AllPage'; 
+import AllPage from './page/AllPage';
 import OffersPage from './page/OffersPage'; // Importa el nuevo componente
 import TopNav from './components/TopNav';
 import FavoritePage from './page/FavoritePage';
@@ -43,21 +43,25 @@ function App() {
 
   return (
     <div className="App flex flex-col min-h-screen">
-      <TopNav />
-      <div className="content flex-grow">
-        <Header />
-        <main>
-          <Routes>
-            <Route path="/" element={<MainContainer />} />
-            <Route path="/category/:category" element={<CategoryPage />} />
-            <Route path="/all" element={<AllPage />} />
-            <Route path="/offers" element={<OffersPage />} /> {/* Nueva ruta para OffersPage */}
-            <Route path="/favorite" element={<FavoritePage />} />
-          </Routes>
-        </main>
-        <SocialMedia />
-        <ContactButton show={showContactButton} />
-        <Footer ref={footerRef} />
+      <div className="container mx-auto px-4 md:px-8"> {/* Nuevo contenedor con márgenes */}
+        <TopNav />
+        <div className="content flex-grow">
+          <Header />
+          <main>
+            <Routes>
+              <Route path="/" element={<MainContainer />} />
+              <Route path="/category/:category" element={<CategoryPage />} />
+              <Route path="/all" element={<AllPage />} />
+              <Route path="/offers" element={<OffersPage />} /> {/* Nueva ruta para OffersPage */}
+              <Route path="/favorite" element={<FavoritePage />} />
+            </Routes>
+          </main>
+          <span className="w-full border-t border-gray-500 mb-4"></span>
+          <SocialMedia />
+          <ContactButton show={showContactButton} />
+          
+          <Footer ref={footerRef} />
+        </div>
       </div>
     </div>
   );

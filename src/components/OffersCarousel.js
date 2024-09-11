@@ -4,20 +4,24 @@ import OfferCard from './OfferCard';
 const OffersCarousel = ({ offers }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [startX, setStartX] = useState(null);
+  const [isSwiping, setIsSwiping] = useState(false); // To handle swipe state
   const carouselRef = useRef(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) =>
-        prevIndex === offers.length - 1 ? 0 : prevIndex + 1
-      );
+      if (!isSwiping) { // Move to the next slide only if not swiping
+        setCurrentIndex((prevIndex) =>
+          prevIndex === offers.length - 1 ? 0 : prevIndex + 1
+        );
+      }
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [offers.length]);
+  }, [offers.length, isSwiping]);
 
   const handleTouchStart = (e) => {
     setStartX(e.touches[0].clientX);
+    setIsSwiping(true); // Set swiping state to true
   };
 
   const handleTouchMove = (e) => {
@@ -25,22 +29,29 @@ const OffersCarousel = ({ offers }) => {
     const currentX = e.touches[0].clientX;
     const diffX = startX - currentX;
 
-    if (diffX > 50) {
+    if (Math.abs(diffX) > 50) { // Adjust threshold if needed
       setCurrentIndex((prevIndex) =>
-        prevIndex === offers.length - 1 ? 0 : prevIndex + 1
+        diffX > 0
+          ? prevIndex === offers.length - 1
+            ? 0
+            : prevIndex + 1
+          : prevIndex === 0
+          ? offers.length - 1
+          : prevIndex - 1
       );
-    } else if (diffX < -50) {
-      setCurrentIndex((prevIndex) =>
-        prevIndex === 0 ? offers.length - 1 : prevIndex - 1
-      );
+      setStartX(null); // Reset startX
+      setIsSwiping(false); // Reset swiping state
     }
+  };
 
-    setStartX(null);
+  const handleTouchEnd = () => {
+    setStartX(null); // Reset startX
+    setIsSwiping(false); // Reset swiping state
   };
 
   return (
     <div className="offers-carousel">
-      <div className="title-container mb-4 flex items-center">
+      <div className="title-container my-4 flex items-center">
         <h2 className="text-2xl font-bold">Ofertas para ti!</h2>
       </div>
       <div
@@ -48,6 +59,7 @@ const OffersCarousel = ({ offers }) => {
         ref={carouselRef}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
       >
         <div
           className={`flex ${
@@ -73,5 +85,3 @@ const OffersCarousel = ({ offers }) => {
 };
 
 export default OffersCarousel;
-
-
