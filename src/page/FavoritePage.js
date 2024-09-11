@@ -24,7 +24,7 @@ const FavoritePage = () => {
   console.log('Filtered favorites:', filteredFavorites);
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto">
       <h2 className="text-2xl font-bold ml-4">Mis Favoritos</h2>
       <Breadcrumb
         items={[

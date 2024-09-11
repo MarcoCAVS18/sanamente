@@ -6,7 +6,7 @@ const SpecialCard = ({ offer }) => {
   return (
     <div className="relative w-full p-4 mb-4 select-none">
       {/* Tarjeta con borde */}
-      <div className="relative border-2 border-[#aeca0d] rounded-lg pt-12 pb-8 px-4 special-card w-full">
+      <div className="relative border-2 border-[#aeca0d] rounded-3xl pt-12 pb-8 px-4 special-card w-full">
 
         {/* Información de productos */}
         <div className="text-center mb-4">
@@ -18,7 +18,7 @@ const SpecialCard = ({ offer }) => {
         </div>
 
         {/* Contenedor de precio clickeable */}
-        <div className="absolute bottom-[-16px] left-1/2 transform -translate-x-1/2 bg-[#aeca0d] text-white text-center py-2 px-12 rounded-md z-10 cursor-pointer transition-colors duration-300 hover:bg-[#be4492]">
+        <div className="absolute bottom-[-22px] left-1/2 transform -translate-x-1/2 bg-[#aeca0d] text-white text-center py-2 px-12 rounded-md z-10 cursor-pointer transition-colors duration-300 hover:bg-[#be4492]">
           {/* Precio visible */}
           <span className="text-lg font-bold group-hover:hidden">${offer.price}</span>
           {/* Ícono de estrella que aparece al hacer hover */}
