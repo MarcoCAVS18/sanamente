@@ -4,7 +4,7 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 const SpecialCard = ({ offer }) => {
   return (
-    <div className="relative w-full p-4 mb-4 select-none">
+    <div className="relative w-full mb-12 select-none">
       {/* Tarjeta con borde */}
       <div className="relative border-2 border-[#aeca0d] rounded-3xl pt-12 pb-8 px-4 special-card w-full">
 
@@ -29,7 +29,7 @@ const SpecialCard = ({ offer }) => {
       </div>
 
       {/* Contenedor de imágenes */}
-      <div className="absolute top-[-30px] left-1/2 transform -translate-x-1/2 z-20 flex space-x-4">
+      <div className="absolute top-[-50px] left-1/2 transform -translate-x-1/2 z-20 flex space-x-4">
         {offer.image1 && (
           <div className="w-24 h-24 overflow-hidden">
             <img src={offer.image1} alt="Producto 1" className="object-cover w-full h-full" />

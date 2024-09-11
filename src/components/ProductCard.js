@@ -68,7 +68,7 @@ const ProductCard = ({ product }) => {
   const categorySlug = product.category.toLowerCase().replace(/\s+/g, '-');
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 mb-4 relative flex flex-col">
+    <div className="bg-white rounded-lg shadow-md p-4 relative flex flex-col">
       <div className="flex flex-wrap">
         <img
           src={product.imageUrl || 'placeholder.jpg'}
