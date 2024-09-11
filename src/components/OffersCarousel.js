@@ -4,24 +4,26 @@ import OfferCard from './OfferCard';
 const OffersCarousel = ({ offers }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [startX, setStartX] = useState(null);
-  const [isSwiping, setIsSwiping] = useState(false); // To handle swipe state
+  const [isSwiping, setIsSwiping] = useState(false);
   const carouselRef = useRef(null);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (!isSwiping) { // Move to the next slide only if not swiping
+    const interval = window.innerWidth <= 768 ? setInterval(() => {
+      if (!isSwiping) {
         setCurrentIndex((prevIndex) =>
           prevIndex === offers.length - 1 ? 0 : prevIndex + 1
         );
       }
-    }, 3000);
+    }, 3000) : null;
 
-    return () => clearInterval(interval);
+    return () => {
+      if (interval) clearInterval(interval);
+    };
   }, [offers.length, isSwiping]);
 
   const handleTouchStart = (e) => {
     setStartX(e.touches[0].clientX);
-    setIsSwiping(true); // Set swiping state to true
+    setIsSwiping(true);
   };
 
   const handleTouchMove = (e) => {
@@ -29,7 +31,7 @@ const OffersCarousel = ({ offers }) => {
     const currentX = e.touches[0].clientX;
     const diffX = startX - currentX;
 
-    if (Math.abs(diffX) > 50) { // Adjust threshold if needed
+    if (Math.abs(diffX) > 50) {
       setCurrentIndex((prevIndex) =>
         diffX > 0
           ? prevIndex === offers.length - 1
@@ -39,14 +41,14 @@ const OffersCarousel = ({ offers }) => {
           ? offers.length - 1
           : prevIndex - 1
       );
-      setStartX(null); // Reset startX
-      setIsSwiping(false); // Reset swiping state
+      setStartX(null);
+      setIsSwiping(false);
     }
   };
 
   const handleTouchEnd = () => {
-    setStartX(null); // Reset startX
-    setIsSwiping(false); // Reset swiping state
+    setStartX(null);
+    setIsSwiping(false);
   };
 
   return (
@@ -62,12 +64,10 @@ const OffersCarousel = ({ offers }) => {
         onTouchEnd={handleTouchEnd}
       >
         <div
-          className={`flex ${
-            window.innerWidth > 768 ? "justify-start" : "transition-transform duration-500 ease-in-out"
-          }`}
+          className="carousel-slider"
           style={{
             transform: window.innerWidth <= 768 ? `translateX(-${currentIndex * 100}%)` : "none",
-            width: `${window.innerWidth > 768 ? '100%' : offers.length * 100}%`,
+            width: window.innerWidth <= 768 ? `${offers.length * 100}%` : '100%',
           }}
         >
           {offers.map((offer, index) => (

@@ -4,7 +4,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 const SearchInput = ({ onSearch }) => {
   return (
-    <div className="relative mx-auto w-11/12 flex items-center">
+    <div className="relative mx-auto flex items-center">
       <input
         type="text"
         placeholder="Buscar entre todos los productos..."

@@ -248,16 +248,36 @@ footer {
   pointer-events: all;
 }
 
-.offers-carousel {
-  width: 100%;
-  overflow: hidden;
+/* Carousel Container */
+.carousel-container {
   display: flex;
-  flex-direction: column; /* Ensure vertical stacking of title and carousel */
+  overflow: hidden;
 }
 
-.title-container {
-  text-align: center; /* Center the title horizontally */
+.carousel-slider {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
 }
+
+/* Card Container */
+.offer-card-container {
+  flex: 0 0 100%; /* Ocupa todo el ancho en pantallas pequeñas */
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+@media (min-width: 768px) {
+  .carousel-slider {
+    width: 100%; /* Asegura que en pantallas grandes el ancho sea 100% del contenedor */
+  }
+
+  .offer-card-container {
+    flex: 0 0 33.3333%; /* Muestra tres tarjetas en pantallas grandes */
+  }
+}
+
+
 
 .mb-4 {
   margin-bottom: 1rem;

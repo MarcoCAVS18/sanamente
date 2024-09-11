@@ -28,10 +28,14 @@ const OfferCard = ({ offer, index }) => {
 
   return (
     <div
-      className={`offer-card bg-white p-6 shadow-md rounded-lg h-full ${index !== 1 ? 'cursor-pointer hover:opacity-30' : ''}`}
+      className={`offer-card bg-white p-4 shadow-md rounded-lg h-full flex items-center justify-center overflow-hidden ${index !== 1 ? 'cursor-pointer hover:opacity-70' : ''}`}
       onClick={index !== 1 ? handleClick : null} // Evita que la segunda tarjeta sea clickeable
     >
-      <img src={getImageForIndex()} alt="Oferta" className="w-full h-40 object-cover mb-4" />
+      <img 
+        src={getImageForIndex()} 
+        alt="Oferta" 
+        className="w-full h-full object-cover rounded-3xl" 
+      />
     </div>
   );
 };
