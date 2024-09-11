@@ -7,7 +7,8 @@ import Footer from './components/Footer';
 import ContactButton from './components/ContactButton';
 import SocialMedia from './components/SocialMedia';
 import CategoryPage from './page/CategoryPage';
-import AllPage from './page/AllPage'; // Importa el nuevo componente
+import AllPage from './page/AllPage'; 
+import OffersPage from './page/OffersPage'; // Importa el nuevo componente
 import TopNav from './components/TopNav';
 import FavoritePage from './page/FavoritePage';
 
@@ -49,7 +50,8 @@ function App() {
           <Routes>
             <Route path="/" element={<MainContainer />} />
             <Route path="/category/:category" element={<CategoryPage />} />
-            <Route path="/all" element={<AllPage />} /> {/* Ruta para AllPage */}
+            <Route path="/all" element={<AllPage />} />
+            <Route path="/offers" element={<OffersPage />} /> {/* Nueva ruta para OffersPage */}
             <Route path="/favorite" element={<FavoritePage />} />
           </Routes>
         </main>

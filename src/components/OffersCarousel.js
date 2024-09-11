@@ -63,7 +63,7 @@ const OffersCarousel = ({ offers }) => {
               key={index}
               className="offer-card-container"
             >
-              <OfferCard offer={offer} />
+              <OfferCard offer={offer} index={index} />
             </div>
           ))}
         </div>

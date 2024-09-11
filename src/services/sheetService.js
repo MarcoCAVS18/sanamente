@@ -95,3 +95,33 @@ export const fetchProducts = async () => {
     return [];
   }
 };
+
+
+// Función para obtener los datos de la hoja Special
+export const fetchSpecialOffers = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}Special!A1:H1000?key=${API_KEY}`);
+    console.log('Special Offers API Response:', response.data);
+    
+    if (response.data.values) {
+      const specialOffers = response.data.values.slice(1).map(row => ({
+        id: row[0],
+        image1: row[1],
+        image2: row[2],
+        product1: row[3],
+        description1: row[4],
+        product2: row[5],
+        description2: row[6],
+        price: row[7],
+      }));
+      console.log('Parsed Special Offers:', specialOffers);
+      return specialOffers;
+    } else {
+      console.warn('No data found for special offers.');
+      return [];
+    }
+  } catch (error) {
+    console.error('Error fetching special offers:', error);
+    return [];
+  }
+};
